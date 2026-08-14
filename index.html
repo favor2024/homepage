@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>파보르 FAVOR — Beauty Distribution House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #FCFCFB;           /* 종이 화이트 */
+    --grid: #E9E9E7;            /* 모눈 라인 */
+    --blue: #2864A0;            /* 로고 블루 */
+    --blue-deep: #1B4573;       /* 딥 네이비 블루 */
+    --blue-sky: #8CAAC8;        /* 라이트 블루 */
+    --blue-mist: #EAF0F6;       /* 아주 옅은 블루 */
+    --ink: #22282F;
+    --ink-soft: #5B646E;
+    --line: rgba(40, 100, 160, 0.22);
+    --display: 'Oswald', sans-serif;      /* 로고와 같은 결의 컨덴스드 산세리프 */
+    --sans: 'Noto Sans KR', sans-serif;
+    --serif-kr: 'Noto Serif KR', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      var(--paper);
+    background-size: 48px 48px, 48px 48px, auto;
+  }
+
+  ::selection { background: var(--blue-mist); color: var(--blue-deep); }
+
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 4px;
+  }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 6vw; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 6vw;
+    transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(252, 252, 251, 0.94);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--grid);
+    padding: 14px 6vw;
+  }
+  .nav-logo {
+    font-family: var(--display); font-weight: 600;
+    font-size: 1.25rem; letter-spacing: 0.4em; text-indent: 0.4em;
+    color: var(--blue); text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 38px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em;
+    color: var(--ink-soft); transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* ---------- Hero ---------- */
+  header {
+    min-height: 100svh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+    padding: 120px 6vw 100px;
+  }
+  /* 십자 좌표 마커 — 모눈종이 위 설계도 느낌 */
+  .cross {
+    position: absolute; width: 22px; height: 22px; pointer-events: none;
+    opacity: 0.6;
+  }
+  .cross::before, .cross::after {
+    content: ''; position: absolute; background: var(--blue-sky);
+  }
+  .cross::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+  .cross::after { top: 50%; left: 0; right: 0; height: 1px; }
+  .c1 { top: 18%; left: 12%; }
+  .c2 { top: 26%; right: 14%; }
+  .c3 { bottom: 20%; left: 20%; }
+  .c4 { bottom: 26%; right: 10%; }
+
+  .hero-kr {
+    font-weight: 300;
+    font-size: clamp(1.05rem, 2.4vw, 1.6rem);
+    letter-spacing: 1.6em; text-indent: 1.6em;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .hero-mark {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(4.2rem, 15vw, 12rem);
+    line-height: 1.05;
+    letter-spacing: 0.22em; text-indent: 0.22em;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--blue);
+    text-stroke: 2px var(--blue);
+  }
+  @supports not (-webkit-text-stroke: 2px var(--blue)) {
+    .hero-mark { color: var(--blue); }
+  }
+  .hero-tag {
+    margin-top: 40px;
+    font-family: var(--serif-kr); font-weight: 400;
+    font-size: clamp(1.15rem, 2.6vw, 1.7rem);
+    line-height: 1.7;
+  }
+  .hero-tag strong { font-weight: 600; color: var(--blue); }
+  .hero-sub {
+    margin-top: 22px; max-width: 520px;
+    font-size: 0.96rem; color: var(--ink-soft);
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 14px;
+    margin-top: 48px;
+    font-family: var(--display); font-weight: 500;
+    font-size: 0.85rem; letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--blue);
+    padding: 16px 34px;
+    transition: background 0.3s ease, gap 0.3s ease;
+  }
+  .hero-cta:hover { background: var(--blue-deep); gap: 22px; }
+
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.66rem; letter-spacing: 0.36em; text-indent: 0.36em;
+    color: var(--blue-sky);
+  }
+  .scroll-hint::after {
+    content: ''; display: block; width: 1px; height: 40px;
+    background: var(--blue-sky); margin: 10px auto 0;
+    animation: drop 2.2s ease-in-out infinite;
+    transform-origin: top;
+  }
+  @keyframes drop {
+    0%, 100% { transform: scaleY(0.35); opacity: 0.4; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  /* ---------- Sections common ---------- */
+  section { padding: 130px 0; position: relative; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--display); font-weight: 500;
+    font-size: 0.75rem; letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 28px;
+  }
+  .eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--blue); }
+
+  h2 {
+    font-family: var(--serif-kr); font-weight: 400;
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    line-height: 1.55;
+  }
+  h2 strong { font-weight: 600; color: var(--blue); }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.on { opacity: 1; transform: none; }
+  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+  .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+  /* ---------- Story ---------- */
+  #story .story-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 8vw;
+    align-items: start;
+  }
+  .story-word {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(3.8rem, 9vw, 7rem);
+    line-height: 1.05; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--blue);
+  }
+  @supports not (-webkit-text-stroke: 1.5px var(--blue)) {
+    .story-word { color: var(--blue); }
+  }
+  .story-word em {
+    font-family: var(--sans); font-style: normal; font-weight: 300;
+    display: block; font-size: 0.16em; letter-spacing: 0.6em;
+    color: var(--ink-soft); margin-top: 20px;
+    -webkit-text-stroke: 0;
+  }
+  .story-body p + p { margin-top: 1.4em; }
+  .story-body .lead {
+    font-family: var(--serif-kr); font-size: 1.2rem; line-height: 2;
+    color: var(--ink); font-weight: 400;
+  }
+  .story-body .lead strong { color: var(--blue); font-weight: 600; }
+  .story-body p { color: var(--ink-soft); font-size: 0.96rem; }
+
+  /* ---------- What we do ---------- */
+  #work { background: var(--paper); box-shadow: 0 0 0 1px var(--grid) inset; }
+  .work-head { max-width: 640px; margin-bottom: 76px; }
+  .work-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .work-card {
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 52px 46px 60px;
+    background: var(--paper);
+    transition: background 0.35s ease;
+    position: relative;
+  }
+  .work-card:hover { background: var(--blue-mist); }
+  .work-card .k {
+    font-family: var(--display); font-weight: 500;
+    font-size: 0.78rem; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--blue-sky);
+    display: block; margin-bottom: 20px;
+  }
+  .work-card h3 {
+    font-weight: 700; font-size: 1.12rem;
+    margin-bottom: 14px; color: var(--blue-deep);
+  }
+  .work-card p { font-size: 0.92rem; color: var(--ink-soft); }
+
+  /* ---------- Brands ---------- */
+  .brands-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 66px; flex-wrap: wrap; gap: 20px; }
+  .brands-note { font-size: 0.87rem; color: var(--ink-soft); max-width: 340px; }
+  .brand-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .brand-tile {
+    aspect-ratio: 3 / 4;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 28px;
+    border: 1.5px solid var(--blue);
+    background: var(--paper);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    position: relative;
+  }
+  .brand-tile:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0 var(--blue);
+    background: #FFFFFF;
+  }
+  .brand-tile .cat {
+    font-family: var(--display); font-weight: 500;
+    font-size: 0.68rem; letter-spacing: 0.3em; color: var(--blue);
+    text-transform: uppercase;
+  }
+  .brand-tile .name {
+    font-weight: 700; font-size: 1.2rem; line-height: 1.45;
+    color: var(--ink);
+  }
+  .brand-tile .name span {
+    display: block; font-family: var(--display); font-weight: 400;
+    font-size: 0.68em; color: var(--ink-soft); margin-top: 8px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+
+  /* ---------- Numbers (deep blue) ---------- */
+  #why {
+    background:
+      linear-gradient(rgba(252, 252, 251, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(252, 252, 251, 0.06) 1px, transparent 1px),
+      var(--blue-deep);
+    background-size: 48px 48px, 48px 48px, auto;
+    color: var(--paper);
+  }
+  #why .eyebrow { color: var(--blue-sky); }
+  #why .eyebrow::before { background: var(--blue-sky); }
+  #why h2 { color: var(--paper); }
+  #why h2 strong { color: #BFD5EC; }
+  .num-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 60px 44px; margin-top: 88px;
+  }
+  .num .value {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(3rem, 6vw, 4.6rem); line-height: 1;
+    letter-spacing: 0.08em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--paper);
+  }
+  @supports not (-webkit-text-stroke: 1.5px var(--paper)) {
+    .num .value { color: var(--paper); }
+  }
+  .num .value small { font-size: 0.42em; letter-spacing: 0.08em; margin-left: 4px; }
+  .num .label {
+    margin-top: 18px; font-size: 0.85rem; letter-spacing: 0.05em;
+    color: rgba(252, 252, 251, 0.72);
+    border-top: 1px solid rgba(252, 252, 251, 0.22);
+    padding-top: 16px;
+  }
+
+  /* ---------- Contact ---------- */
+  #contact { padding-bottom: 60px; }
+  .contact-inner { text-align: center; max-width: 660px; margin: 0 auto; }
+  .contact-inner .eyebrow::before { display: none; }
+  .contact-inner p { margin-top: 24px; color: var(--ink-soft); font-size: 0.95rem; }
+  .contact-mail {
+    display: inline-block; margin-top: 46px;
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    border-bottom: 2px solid var(--blue);
+    padding-bottom: 8px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .contact-mail:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
+
+  footer {
+    margin-top: 110px;
+    border-top: 1px solid var(--grid);
+    background: var(--paper);
+    padding: 32px 6vw 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 0.74rem; color: var(--ink-soft); letter-spacing: 0.05em;
+  }
+  footer .mark {
+    font-family: var(--display); font-weight: 600;
+    letter-spacing: 0.34em; color: var(--blue); font-size: 0.95rem;
+    text-transform: uppercase;
+  }
+  .foot-links { display: flex; gap: 26px; }
+  .foot-links a:hover { color: var(--blue); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    #story .story-grid { grid-template-columns: 1fr; gap: 50px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .brand-row { grid-template-columns: repeat(2, 1fr); }
+    .num-grid { grid-template-columns: 1fr 1fr; gap: 48px 28px; }
+    section { padding: 96px 0; }
+    .hero-kr { letter-spacing: 1em; text-indent: 1em; }
+  }
+  @media (max-width: 540px) {
+    .brand-row { grid-template-columns: 1fr; }
+    .num-grid { grid-template-columns: 1fr; }
+    .hero-mark { letter-spacing: 0.14em; text-indent: 0.14em; -webkit-text-stroke-width: 1.5px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .scroll-hint::after { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .brand-tile, .hero-cta { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" aria-label="주요 메뉴">
+  <a class="nav-logo" href="#top">Favor</a>
+  <ul class="nav-links">
+    <li><a href="#story">브랜드 스토리</a></li>
+    <li><a href="#work">하는 일</a></li>
+    <li><a href="#brands">브랜드</a></li>
+    <li><a href="#why">숫자로 보는 파보르</a></li>
+    <li><a href="#contact">문의</a></li>
+  </ul>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="top">
+  <span class="cross c1" aria-hidden="true"></span>
+  <span class="cross c2" aria-hidden="true"></span>
+  <span class="cross c3" aria-hidden="true"></span>
+  <span class="cross c4" aria-hidden="true"></span>
+
+  <p class="hero-kr reveal">파보르</p>
+  <div class="hero-mark reveal d1">Favor</div>
+
+  <p class="hero-tag reveal d2">
+    좋은 것을 알아보는 눈,<br />
+    그것을 전하는 <strong>가장 정성스러운 방식</strong>
+  </p>
+  <p class="hero-sub reveal d3">
+    파보르는 국내외의 좋은 뷰티 브랜드를 발굴하고,
+    그 가치가 훼손되지 않도록 가장 알맞은 채널로 연결하는
+    뷰티 디스트리뷰션 하우스입니다.
+  </p>
+  <a class="hero-cta reveal d4" href="#story">Brand Story →</a>
+
+  <div class="scroll-hint" aria-hidden="true">Scroll</div>
+</header>
+
+<!-- ================= STORY ================= -->
+<section id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="reveal">
+        <p class="eyebrow">Brand Story</p>
+        <div class="story-word">
+          Favor
+          <em>아름다움을 향한 호의</em>
+        </div>
+      </div>
+      <div class="story-body reveal d2">
+        <p class="lead">
+          FAVOR — ‘호의, 특별한 애정’.
+          우리는 좋은 제품을 향한 <strong>진심 어린 호의</strong>가
+          소비자에게 닿는 순간까지 온전히 지켜져야 한다고 믿습니다.
+        </p>
+        <p>
+          유통은 단순히 물건을 옮기는 일이 아닙니다.
+          브랜드가 쌓아온 철학과 품질에 대한 약속을,
+          가장 어울리는 자리에서 가장 좋은 모습으로 소개하는 일입니다.
+        </p>
+        <p>
+          작지만 빠르고, 가볍지만 깊게.
+          파보르는 규모보다 안목으로, 물량보다 신뢰로 일하는
+          소수 정예의 뷰티 유통 파트너입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT WE DO ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="work-head reveal">
+      <p class="eyebrow">What We Do</p>
+      <h2>발굴에서 판매까지,<br /><strong>브랜드의 여정</strong>을 함께합니다</h2>
+    </div>
+    <div class="work-grid">
+      <article class="work-card reveal d1">
+        <span class="k">Sourcing</span>
+        <h3>브랜드 발굴 &amp; 소싱</h3>
+        <p>국내외 전시·시장 리서치를 통해 성장 가능성 있는 뷰티 브랜드를 조기에 발굴하고, 독점·비독점 유통 계약을 설계합니다.</p>
+      </article>
+      <article class="work-card reveal d2">
+        <span class="k">Channel</span>
+        <h3>채널 유통 &amp; 운영</h3>
+        <p>홈쇼핑·이커머스·H&amp;B 스토어 등 채널별 특성에 맞춘 입점 전략과 재고·물류 운영으로 안정적인 판매 기반을 만듭니다.</p>
+      </article>
+      <article class="work-card reveal d3">
+        <span class="k">Branding</span>
+        <h3>브랜드 로컬라이징</h3>
+        <p>패키지·상세페이지·커뮤니케이션 톤까지, 브랜드 본연의 정체성을 지키면서 국내 소비자의 언어로 번역합니다.</p>
+      </article>
+      <article class="work-card reveal d4">
+        <span class="k">Growth</span>
+        <h3>데이터 기반 성장 관리</h3>
+        <p>채널별 판매 데이터를 분석해 가격·프로모션·물량을 최적화하고, 브랜드와 함께 다음 단계의 성장을 설계합니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BRANDS ================= -->
+<section id="brands">
+  <div class="wrap">
+    <div class="brands-head reveal">
+      <div>
+        <p class="eyebrow">Our Brands</p>
+        <h2>파보르가 소개하는 <strong>안목의 브랜드</strong></h2>
+      </div>
+      <p class="brands-note">
+        스킨케어부터 헤어·바디까지, 카테고리별 대표 파트너 브랜드입니다.
+        아래는 예시이며 실제 브랜드로 교체해 사용하세요.
+      </p>
+    </div>
+    <div class="brand-row">
+      <div class="brand-tile reveal d1">
+        <span class="cat">Skincare</span>
+        <p class="name">브랜드 A<span>Clean &amp; Vegan</span></p>
+      </div>
+      <div class="brand-tile reveal d2">
+        <span class="cat">Makeup</span>
+        <p class="name">브랜드 B<span>Color Artistry</span></p>
+      </div>
+      <div class="brand-tile reveal d3">
+        <span class="cat">Hair &amp; Body</span>
+        <p class="name">브랜드 C<span>Daily Ritual</span></p>
+      </div>
+      <div class="brand-tile reveal d4">
+        <span class="cat">Derma</span>
+        <p class="name">브랜드 D<span>Clinical Care</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY / NUMBERS ================= -->
+<section id="why">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Why Favor</p>
+      <h2>작은 팀이 만드는 <strong>단단한 신뢰</strong></h2>
+    </div>
+    <div class="num-grid">
+      <div class="num reveal d1">
+        <div class="value">20<small>+</small></div>
+        <p class="label">파트너 브랜드 · 스킨케어부터 더마까지</p>
+      </div>
+      <div class="num reveal d2">
+        <div class="value">12</div>
+        <p class="label">운영 유통 채널 · 홈쇼핑, 이커머스, 오프라인</p>
+      </div>
+      <div class="num reveal d3">
+        <div class="value">98<small>%</small></div>
+        <p class="label">파트너 재계약률 · 함께 성장하는 관계</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap contact-inner">
+    <p class="eyebrow reveal">Contact</p>
+    <h2 class="reveal d1">함께 안목을 나눌<br /><strong>브랜드와 파트너</strong>를 기다립니다</h2>
+    <p class="reveal d2">
+      입점·유통 제안, 브랜드 소싱 협업 등 어떤 이야기든 좋습니다.<br />
+      메일을 보내주시면 영업일 기준 2일 안에 답변드립니다.
+    </p>
+    <a class="contact-mail reveal d3" href="mailto:hello@favor.co.kr">hello@favor.co.kr</a>
+  </div>
+</section>
+
+<footer>
+  <span class="mark">Favor</span>
+  <span>© 2026 FAVOR Co., Ltd. All rights reserved.</span>
+  <div class="foot-links">
+    <a href="#top">Instagram</a>
+    <a href="#top">Blog</a>
+    <a href="#top">회사 위치</a>
+  </div>
+</footer>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll reveal
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll('.reveal');
+  if (reduce) {
+    targets.forEach(el => el.classList.add('on'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    targets.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
