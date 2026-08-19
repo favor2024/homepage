@@ -72,12 +72,13 @@
 
   h2 {
     font-family: var(--serif); font-weight: 300;
+    word-break: keep-all;
     font-size: clamp(1.45rem, 3vw, 2.15rem);
     line-height: 1.6; letter-spacing: -0.01em;
   }
   h2 em { font-style: normal; font-weight: 400; color: var(--accent); }
   .head { max-width: 620px; margin-bottom: 68px; }
-  .head .note { margin-top: 22px; color: var(--muted); font-size: 0.92rem; }
+  .head .note { margin-top: 22px; color: var(--muted); font-size: 0.92rem; word-break: keep-all; }
 
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity 1s ease, transform 1s ease; }
   .reveal.on { opacity: 1; transform: none; }
@@ -188,7 +189,7 @@
   }
   .item .tag { color: var(--accent); padding-top: 5px; }
   .item h3 { font-family: var(--serif); font-weight: 400; font-size: 1.02rem; }
-  .item p { color: var(--muted); font-size: 0.91rem; }
+  .item p { color: var(--muted); font-size: 0.91rem; word-break: keep-all; }
 
   /* ── 채널 ── */
   .dark {
@@ -216,15 +217,25 @@
 
   /* ── 로드맵 ── */
   .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background-color: var(--line); border: 1px solid var(--line); }
-  .plan { background-color: var(--card); padding: 34px 30px 38px; }
+  .plan {
+    background-color: var(--card); padding: 34px 30px 38px;
+    display: flex; flex-direction: column;
+  }
   .plan .tag { display: block; color: var(--accent); margin-bottom: 16px; }
   .plan h3 { font-family: var(--serif); font-weight: 400; font-size: 1rem; margin-bottom: 10px; }
-  .plan p { font-size: 0.89rem; color: var(--muted); }
-  .plan .state { display: inline-block; margin-top: 20px; color: var(--muted); border: 1px solid var(--line); padding: 6px 12px; }
+  .plan p { font-size: 0.89rem; color: var(--muted); word-break: keep-all; }
+  .plan .state {
+    align-self: flex-start; margin-top: auto; padding-top: 24px;
+    color: var(--muted);
+  }
+  .plan .state::before {
+    content: ''; display: block; width: 22px; height: 1px;
+    background-color: var(--accent); margin-bottom: 12px;
+  }
 
   /* ── 문의 ── */
   .contact { text-align: center; }
-  .contact .head { margin: 0 auto 0; }
+  .contact .head { max-width: none; margin: 0 auto; }
   .contact .lead { margin-top: 24px; color: var(--muted); font-size: 0.93rem; }
   .mail {
     display: inline-block; margin-top: 44px;
@@ -357,29 +368,29 @@
   <section class="panel" id="work">
     <div class="head reveal">
       <span class="eyebrow mono">What we do</span>
-      <h2>선물이 될 만한 제품을 <em>고르고 전하는 일</em>을 합니다.</h2>
+      <h2>선물이 될 만한 제품을<br><em>고르고 전하는 일</em>을 합니다.</h2>
     </div>
 
     <div class="work">
       <article class="item reveal">
         <span class="tag mono">Sourcing</span>
         <h3>제품 선별 &amp; 매입</h3>
-        <p>국내 화장품 가운데 믿을 만한 성분을 포함한 제품을 선별해 매입하고, 합리적인 가격으로 내놓습니다.</p>
+        <p>국내 화장품 가운데 믿을 만한 성분을 포함한 제품을 선별해 매입하고,<br>합리적인 가격으로 내놓습니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Domestic</span>
         <h3>국내 채널 운영</h3>
-        <p>스마트스토어, 쿠팡, 자사몰을 함께 운영하며 채널별 고객층에 맞춰 상품 구성과 가격을 관리합니다.</p>
+        <p>스마트스토어, 쿠팡, 자사몰을 함께 운영하며<br>채널별 고객층에 맞춰 상품 구성과 가격을 관리합니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Cross-border</span>
         <h3>해외 플랫폼 공급</h3>
-        <p>Shopee, Qoo10 등 다국적 플랫폼에서 판매하며 해외 배송과 현지 문의에 응대합니다.</p>
+        <p>Shopee, Qoo10 등 다국적 플랫폼에서 판매하며<br>해외 배송과 현지 문의에 응대합니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Operation</span>
         <h3>재고 관리 &amp; 고객 소통</h3>
-        <p>판매 흐름에 맞춰 매입과 재고를 조정하고, 주문부터 교환까지 고객의 필요를 파악하여 소통합니다.</p>
+        <p>판매 흐름에 맞춰 매입과 재고를 조정하고,<br>주문부터 교환까지 고객의 필요를 파악하여 소통합니다.</p>
       </article>
     </div>
   </section>
