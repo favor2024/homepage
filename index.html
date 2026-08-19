@@ -5,356 +5,278 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
-<meta name="theme-color" content="#FCFCFB">
-<title>파보르 FAVOR — K-뷰티 커머스</title>
-<meta name="description" content="FAVOR(파보르)는 2024년 설립된 전자상거래 기업으로, K-뷰티 화장품을 중심으로 국내외 온라인 채널에서 제품을 선보이고 있습니다.">
+<meta name="theme-color" content="#EDEAE3">
+<title>파보르 FAVOR — 화장품 유통</title>
+<meta name="description" content="FAVOR(파보르)는 2024년 설립된 화장품 유통 회사입니다. 국내외 화장품을 직접 골라 국내 오픈마켓과 해외 플랫폼에 공급합니다.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="파보르 FAVOR — K-뷰티 커머스">
+<meta property="og:title" content="파보르 FAVOR — 화장품 유통">
 <meta property="og:description" content="우리의 얼굴을 윤택하게.">
 <meta property="og:locale" content="ko_KR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: only light;
 
-    --paper: #FCFCFB;
-    --grid: #E9E9E7;
-    --blue: #2864A0;
-    --blue-deep: #1B4573;
-    --blue-sky: #8CAAC8;
-    --blue-mist: #EAF0F6;
-    --ink: #22282F;
-    --ink-soft: #5B646E;
-    --line: rgba(40, 100, 160, 0.22);
-    --display: 'Oswald', sans-serif;
+    /* 화장품 카톤의 재질에서 가져온 색 — 판지, 무광 백색, 앰버 유리 */
+    --shell: #EDEAE3;
+    --card: #FBFAF7;
+    --ink: #1B1A16;
+    --muted: #6F6B61;
+    --line: #DCD8CE;
+    --accent: #8C6E43;
+    --deep: #26241E;
+
+    --display: 'Cormorant Garamond', serif;
+    --mono: 'IBM Plex Mono', monospace;
     --sans: 'Noto Sans KR', sans-serif;
-    --serif-kr: 'Noto Serif KR', serif;
+    --serif: 'Noto Serif KR', serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; color-scheme: only light; background-color: #FCFCFB; }
-
-  /* 배경 격자 — 섹션마다 직접 지정해 부모 배경에 기대지 않도록 합니다 */
-  .paper-bg {
-    background-color: var(--paper);
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 48px 48px, 48px 48px;
-  }
+  html { scroll-behavior: smooth; color-scheme: only light; background-color: #EDEAE3; }
 
   body {
+    background-color: var(--shell);
     color: var(--ink);
     font-family: var(--sans);
     font-weight: 300;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.85;
     -webkit-font-smoothing: antialiased;
-    background-color: var(--paper);
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 48px 48px, 48px 48px;
   }
 
-  ::selection { background: var(--blue-mist); color: var(--blue-deep); }
+  ::selection { background: var(--accent); color: var(--card); }
   a { color: inherit; text-decoration: none; }
-  a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+  a:focus-visible { outline: 1px solid var(--accent); outline-offset: 5px; }
+  ul { list-style: none; }
 
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 6vw; }
-  .skip { position: absolute; left: -9999px; background: var(--blue); color: var(--paper); padding: 12px 20px; z-index: 200; }
+  .skip { position: absolute; left: -9999px; background: var(--ink); color: var(--card); padding: 12px 20px; z-index: 200; }
   .skip:focus { left: 12px; top: 12px; }
 
-  /* ---------- Nav ---------- */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center; gap: 20px;
-    padding: 24px 6vw;
-    transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
-  }
-  nav.scrolled {
-    background: rgba(252, 252, 251, 0.94);
-    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 var(--grid);
-    padding: 14px 6vw;
-  }
-  .nav-logo {
-    font-family: var(--display); font-weight: 600;
-    font-size: 1.25rem; letter-spacing: 0.4em; text-indent: 0.4em;
-    color: var(--blue); text-transform: uppercase; white-space: nowrap;
-  }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em;
-    color: var(--ink-soft); white-space: nowrap; transition: color 0.25s;
-  }
-  .nav-links a:hover { color: var(--blue); }
-  .nav-links .shop { color: var(--blue); font-weight: 500; }
-
-  /* ---------- Hero ---------- */
-  header {
-    min-height: 100svh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; position: relative; overflow: hidden;
-    padding: 120px 6vw 100px;
-  }
-  .cross { position: absolute; width: 22px; height: 22px; pointer-events: none; opacity: 0.6; }
-  .cross::before, .cross::after { content: ''; position: absolute; background: var(--blue-sky); }
-  .cross::before { left: 50%; top: 0; bottom: 0; width: 1px; }
-  .cross::after { top: 50%; left: 0; right: 0; height: 1px; }
-  .c1 { top: 18%; left: 12%; }
-  .c2 { top: 26%; right: 14%; }
-  .c3 { bottom: 20%; left: 20%; }
-  .c4 { bottom: 26%; right: 10%; }
-
-  .hero-kr {
-    font-weight: 300; font-size: clamp(1.05rem, 2.4vw, 1.6rem);
-    letter-spacing: 1.6em; text-indent: 1.6em;
-    color: var(--blue); margin-bottom: 6px;
-  }
-  .hero-mark {
-    font-family: var(--display); font-weight: 600;
-    font-size: clamp(4.2rem, 15vw, 12rem);
-    line-height: 1.05; letter-spacing: 0.22em; text-indent: 0.22em;
-    text-transform: uppercase; color: transparent;
-    -webkit-text-stroke: 2px var(--blue);
-  }
-  @supports not (-webkit-text-stroke: 2px #2864A0) { .hero-mark { color: var(--blue); } }
-
-  .hero-slogan {
-    margin-top: 40px;
-    font-family: var(--serif-kr); font-weight: 400;
-    font-size: clamp(1.3rem, 3.2vw, 2.1rem);
-    line-height: 1.7; letter-spacing: 0.02em; color: var(--blue-deep);
-  }
-  .hero-sub { margin-top: 26px; max-width: 560px; font-size: 0.96rem; color: var(--ink-soft); }
-
-  .hero-actions { display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap; justify-content: center; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 14px;
-    font-family: var(--display); font-weight: 500;
-    font-size: 0.85rem; letter-spacing: 0.26em; text-transform: uppercase;
-    padding: 16px 34px;
-    transition: background 0.3s ease, gap 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  }
-  .btn-solid { color: var(--paper); background: var(--blue); }
-  .btn-solid:hover { background: var(--blue-deep); gap: 22px; }
-  .btn-line { color: var(--blue); border: 1px solid var(--line); }
-  .btn-line:hover { border-color: var(--blue); background: var(--blue-mist); gap: 22px; }
-
-  .scroll-hint {
-    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-    font-size: 0.66rem; letter-spacing: 0.36em; text-indent: 0.36em; color: var(--blue-sky);
-  }
-  .scroll-hint::after {
-    content: ''; display: block; width: 1px; height: 40px;
-    background: var(--blue-sky); margin: 10px auto 0;
-    animation: drop 2.2s ease-in-out infinite; transform-origin: top;
-  }
-  @keyframes drop { 0%, 100% { transform: scaleY(0.35); opacity: 0.4; } 50% { transform: scaleY(1); opacity: 1; } }
-
-  /* ---------- Common ---------- */
-  section { padding: 130px 0; position: relative; scroll-margin-top: 60px; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 14px;
-    font-family: var(--display); font-weight: 500;
-    font-size: 0.75rem; letter-spacing: 0.34em; text-transform: uppercase;
-    color: var(--blue); margin-bottom: 28px;
-  }
-  .eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--blue); }
-  h2 { font-family: var(--serif-kr); font-weight: 400; font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.55; }
-  h2 strong { font-weight: 600; color: var(--blue); }
-  .sec-head { max-width: 660px; margin-bottom: 72px; }
-  .sec-head .note { margin-top: 20px; color: var(--ink-soft); font-size: 0.95rem; }
-
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
-  .reveal.on { opacity: 1; transform: none; }
-  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
-  .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
-
-  /* ---------- About ---------- */
-  #about .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 8vw; align-items: start; }
-  .story-word {
-    font-family: var(--display); font-weight: 600;
-    font-size: clamp(3.4rem, 8vw, 6.2rem);
-    line-height: 1.05; letter-spacing: 0.1em; text-transform: uppercase;
-    color: transparent; -webkit-text-stroke: 1.5px var(--blue);
-  }
-  @supports not (-webkit-text-stroke: 1.5px #2864A0) { .story-word { color: var(--blue); } }
-  /* 사명 풀이 — 워드마크 바로 아래에서 이름을 설명합니다 */
-  .verse-note {
-    margin-top: 40px; border-left: 2px solid var(--blue-sky);
-    padding: 4px 0 4px 22px;
-    font-size: 0.94rem; line-height: 1.95; color: var(--ink-soft);
-  }
-
-  .about-body p + p { margin-top: 1.4em; }
-  .about-body p { color: var(--ink-soft); font-size: 0.96rem; }
-  .about-body .lead {
-    font-family: var(--serif-kr); font-size: 1.18rem; line-height: 2;
-    color: var(--ink); font-weight: 400;
-  }
-  .about-body .lead strong { color: var(--blue); font-weight: 600; }
-
-  /* 회사 개요 — 신청 서류에서 바로 확인하는 항목이라 표 형태로 둡니다 */
-  .overview { margin-top: 54px; border-top: 1px solid var(--line); }
-  .overview .row {
-    display: grid; grid-template-columns: 128px 1fr; gap: 20px;
-    padding: 14px 0; border-bottom: 1px solid var(--grid);
-    font-size: 0.9rem;
-  }
-  .overview .k {
-    font-family: var(--display); font-weight: 500;
-    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--blue-sky); padding-top: 4px;
-  }
-  .overview .v { color: var(--ink); font-weight: 400; }
-
-  /* ---------- Business ---------- */
-  #business { background: var(--paper); box-shadow: 0 0 0 1px var(--grid) inset; }
-  .biz-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--line); border-left: 1px solid var(--line);
-  }
-  .biz-card {
-    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    padding: 48px 44px 54px; background: var(--paper);
-    transition: background 0.35s ease;
-  }
-  .biz-card:hover { background: var(--blue-mist); }
-  .biz-card .k {
-    font-family: var(--display); font-weight: 500;
-    font-size: 0.76rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--blue-sky); display: block; margin-bottom: 18px;
-  }
-  .biz-card h3 { font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; color: var(--blue-deep); }
-  .biz-card p { font-size: 0.92rem; color: var(--ink-soft); }
-
-  /* ---------- Channels (딥블루) ---------- */
-  #channels {
-    background-color: var(--blue-deep);
-    background-image:
-      linear-gradient(rgba(252, 252, 251, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(252, 252, 251, 0.06) 1px, transparent 1px);
-    background-size: 48px 48px, 48px 48px;
-    color: var(--paper);
-  }
-  #channels .eyebrow { color: var(--blue-sky); }
-  #channels .eyebrow::before { background: var(--blue-sky); }
-  #channels h2 { color: var(--paper); }
-  #channels h2 strong { color: #BFD5EC; }
-  #channels .sec-head .note { color: rgba(252, 252, 251, 0.72); }
-
-  .chan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 40px; }
-  .chan .t {
-    font-family: var(--display); font-weight: 500;
-    font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--blue-sky);
-    border-bottom: 1px solid rgba(252, 252, 251, 0.22);
-    padding-bottom: 14px; margin-bottom: 22px;
-  }
-  .chan ul { list-style: none; }
-  .chan li {
-    font-family: var(--display); font-weight: 400;
-    font-size: clamp(1.3rem, 2.6vw, 1.75rem);
-    letter-spacing: 0.04em; line-height: 1.7;
-    color: transparent; -webkit-text-stroke: 1px var(--paper);
-  }
-  @supports not (-webkit-text-stroke: 1px #FCFCFB) { .chan li { color: var(--paper); } }
-  .chan .soon li { -webkit-text-stroke: 1px var(--blue-sky); }
-  @supports not (-webkit-text-stroke: 1px #8CAAC8) { .chan .soon li { color: var(--blue-sky); } }
-  .chan .cap { margin-top: 18px; font-size: 0.86rem; color: rgba(252, 252, 251, 0.7); }
-
-  /* ---------- Vision ---------- */
-  .road-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-  .vis {
-    padding: 36px 32px 42px;
+  .shelf { max-width: 1080px; margin: 0 auto; padding: 0 20px 20px; }
+  .panel {
+    background-color: var(--card);
     border: 1px solid var(--line);
-    background: var(--paper);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    padding: 104px 8% 112px;
+    margin-bottom: 18px;
   }
-  .vis:hover { transform: translate(-4px, -4px); box-shadow: 6px 6px 0 var(--blue); }
-  .vis .en {
-    font-family: var(--display); font-weight: 500;
-    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--blue-sky); display: block; margin-bottom: 16px;
-  }
-  .vis h3 { font-weight: 700; font-size: 1.02rem; color: var(--blue-deep); margin-bottom: 12px; }
-  .road-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--display); font-weight: 500;
-    font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase;
-    color: var(--blue-sky); border: 1px solid var(--line);
-    padding: 8px 16px; margin-top: 24px;
-  }
-  .vis p { font-size: 0.92rem; color: var(--ink-soft); }
 
-  /* ---------- Contact ---------- */
-  .contact-inner { text-align: center; max-width: 680px; margin: 0 auto; }
-  .contact-inner .eyebrow::before { display: none; }
-  .contact-inner .lead { margin-top: 24px; color: var(--ink-soft); font-size: 0.95rem; }
-  .contact-mail {
-    display: inline-block; margin-top: 42px;
-    font-family: var(--display); font-weight: 500;
-    font-size: clamp(1.15rem, 3vw, 2.1rem);
-    letter-spacing: 0.06em; word-break: break-all;
-    color: var(--blue);
-    border-bottom: 2px solid var(--blue); padding-bottom: 8px;
-    transition: color 0.3s, border-color 0.3s;
+  /* ── 유틸리티 타입: 규격 표기의 어투 ── */
+  .mono {
+    font-family: var(--mono); font-weight: 500;
+    font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase;
   }
-  .contact-mail:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
-  .contact-tel { margin-top: 26px; font-size: 0.92rem; color: var(--ink-soft); letter-spacing: 0.04em; }
+  .eyebrow { display: block; color: var(--accent); margin-bottom: 30px; }
 
-  /* ---------- Footer ---------- */
-  footer { border-top: 1px solid var(--grid); background: var(--paper); padding: 56px 6vw 48px; }
-  .foot-in { max-width: 1160px; margin: 0 auto; }
-  .foot-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 28px; }
-  .foot-mark {
-    font-family: var(--display); font-weight: 600;
-    letter-spacing: 0.34em; color: var(--blue); font-size: 1.05rem; text-transform: uppercase;
+  h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(1.45rem, 3vw, 2.15rem);
+    line-height: 1.6; letter-spacing: -0.01em;
   }
-  .foot-links { display: flex; gap: 24px; flex-wrap: wrap; font-size: 0.8rem; color: var(--ink-soft); }
-  .foot-links a:hover { color: var(--blue); }
-  .biz-info {
-    margin-top: 34px; padding-top: 24px; border-top: 1px solid var(--grid);
-    font-size: 0.74rem; line-height: 2; color: var(--ink-soft); letter-spacing: 0.02em;
-  }
-  .biz-info span { display: inline-block; margin-right: 18px; }
-  .copy { margin-top: 14px; font-size: 0.72rem; color: var(--blue-sky); letter-spacing: 0.06em; }
+  h2 em { font-style: normal; font-weight: 400; color: var(--accent); }
+  .head { max-width: 620px; margin-bottom: 68px; }
+  .head .note { margin-top: 22px; color: var(--muted); font-size: 0.92rem; }
 
-  /* ---------- Responsive ---------- */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 1s ease, transform 1s ease; }
+  .reveal.on { opacity: 1; transform: none; }
+  .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; }
+  .d3 { transition-delay: 0.24s; } .d4 { transition-delay: 0.32s; }
+
+  /* ── 상단 바 ── */
+  .bar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    background-color: var(--shell);
+    padding: 20px max(20px, calc((100vw - 1080px) / 2 + 20px));
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .bar.stuck { border-bottom-color: var(--line); }
+  .bar .wm {
+    font-family: var(--display); font-weight: 400;
+    font-size: 1.15rem; letter-spacing: 0.5em; text-indent: 0.5em;
+    text-transform: uppercase;
+  }
+  .bar nav { display: flex; gap: 26px; overflow-x: auto; scrollbar-width: none; }
+  .bar nav::-webkit-scrollbar { display: none; }
+  .bar nav a { color: var(--muted); white-space: nowrap; transition: color 0.25s; }
+  .bar nav a:hover { color: var(--ink); }
+  .bar nav a.out { color: var(--accent); }
+
+  /* ── 히어로 ── */
+  .hero { padding: 118px 20px 104px; text-align: center; }
+  .hero .wordmark {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(3.6rem, 12vw, 8.5rem);
+    line-height: 1; letter-spacing: 0.28em; text-indent: 0.28em;
+    text-transform: uppercase;
+  }
+  .hero .kr { margin-top: 26px; color: var(--muted); }
+  .hero .slogan {
+    margin-top: 46px;
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(1.35rem, 3.6vw, 2.3rem);
+    line-height: 1.55;
+  }
+  .hero .sub {
+    margin: 26px auto 0; max-width: 480px;
+    font-size: 0.94rem; color: var(--muted);
+  }
+
+  /* 시그니처: 카톤 뒷면의 규격 표기판 — 유통사가 이름을 올리는 자리 */
+  .spec {
+    max-width: 560px; margin: 58px auto 0;
+    border: 1px solid var(--line);
+    background-color: var(--card);
+    text-align: left;
+  }
+  .spec .cap {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .spec .cap b { color: var(--accent); font-weight: 500; }
+  .spec dl { padding: 6px 20px 16px; }
+  .spec .row {
+    display: grid; grid-template-columns: 112px 1fr; gap: 16px;
+    padding: 11px 0; border-bottom: 1px solid var(--line);
+  }
+  .spec .row:last-child { border-bottom: 0; }
+  .spec dt { color: var(--muted); padding-top: 3px; }
+  .spec dd { font-size: 0.9rem; font-weight: 400; }
+
+  .acts { display: flex; gap: 10px; justify-content: center; margin-top: 44px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 15px 30px;
+    border: 1px solid var(--ink);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .btn.fill { background-color: var(--ink); color: var(--card); }
+  .btn.fill:hover { background-color: var(--accent); border-color: var(--accent); }
+  .btn.ghost { color: var(--ink); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--ink); }
+
+  /* ── 회사 소개 ── */
+  .about { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 7%; align-items: start; }
+  .about .mark {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(2.8rem, 6vw, 4.6rem);
+    line-height: 1; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .about .aside {
+    margin-top: 32px; padding-left: 18px;
+    border-left: 1px solid var(--accent);
+    font-size: 0.92rem; line-height: 1.95; color: var(--muted);
+  }
+  .about .body p + p { margin-top: 1.5em; }
+  .about .body p { color: var(--muted); font-size: 0.94rem; }
+  .about .body .lead {
+    font-family: var(--serif); font-weight: 300;
+    font-size: 1.14rem; line-height: 1.95; color: var(--ink);
+  }
+  .about .body .lead b { font-weight: 400; color: var(--accent); }
+
+  /* ── 사업 내용 ── */
+  .work { border-top: 1px solid var(--line); }
+  .item {
+    display: grid; grid-template-columns: 150px 210px 1fr; gap: 28px;
+    padding: 30px 0; border-bottom: 1px solid var(--line);
+  }
+  .item .tag { color: var(--accent); padding-top: 5px; }
+  .item h3 { font-family: var(--serif); font-weight: 400; font-size: 1.02rem; }
+  .item p { color: var(--muted); font-size: 0.91rem; }
+
+  /* ── 채널 ── */
+  .dark {
+    background-color: var(--deep);
+    border-color: var(--deep);
+    color: var(--card);
+  }
+  .dark h2 { color: var(--card); }
+  .dark h2 em { color: #C7A87A; }
+  .dark .eyebrow { color: #C7A87A; }
+  .dark .head .note { color: rgba(251, 250, 247, 0.6); }
+  .chans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 46px 36px; }
+  .chan .t {
+    color: rgba(251, 250, 247, 0.5);
+    padding-bottom: 13px; margin-bottom: 20px;
+    border-bottom: 1px solid rgba(251, 250, 247, 0.2);
+  }
+  .chan li {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.75;
+    letter-spacing: 0.02em;
+  }
+  .chan.next li { color: rgba(251, 250, 247, 0.45); }
+  .chan .cap { margin-top: 16px; font-size: 0.85rem; color: rgba(251, 250, 247, 0.55); }
+
+  /* ── 로드맵 ── */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background-color: var(--line); border: 1px solid var(--line); }
+  .plan { background-color: var(--card); padding: 34px 30px 38px; }
+  .plan .tag { display: block; color: var(--accent); margin-bottom: 16px; }
+  .plan h3 { font-family: var(--serif); font-weight: 400; font-size: 1rem; margin-bottom: 10px; }
+  .plan p { font-size: 0.89rem; color: var(--muted); }
+  .plan .state { display: inline-block; margin-top: 20px; color: var(--muted); border: 1px solid var(--line); padding: 6px 12px; }
+
+  /* ── 문의 ── */
+  .contact { text-align: center; }
+  .contact .head { margin: 0 auto 0; }
+  .contact .lead { margin-top: 24px; color: var(--muted); font-size: 0.93rem; }
+  .mail {
+    display: inline-block; margin-top: 44px;
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(1.25rem, 3.4vw, 2.2rem);
+    letter-spacing: 0.02em; word-break: break-all;
+    border-bottom: 1px solid var(--accent); padding-bottom: 8px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .mail:hover { color: var(--accent); }
+  .tel { margin-top: 22px; color: var(--muted); }
+
+  /* ── 푸터 ── */
+  footer { padding: 46px 20px 60px; }
+  .foot { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .foot .top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 20px; }
+  .foot .wm { font-family: var(--display); font-weight: 400; font-size: 1rem; letter-spacing: 0.44em; text-transform: uppercase; }
+  .foot .links { display: flex; gap: 22px; flex-wrap: wrap; color: var(--muted); }
+  .foot .links a:hover { color: var(--accent); }
+  .foot .info {
+    margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line);
+    font-size: 0.73rem; line-height: 2.1; color: var(--muted);
+  }
+  .foot .info span { display: inline-block; margin-right: 20px; }
+  .foot .copy { margin-top: 14px; color: var(--muted); }
+
+  /* ── 반응형 ── */
   @media (max-width: 900px) {
-    .nav-links { gap: 18px; overflow-x: auto; scrollbar-width: none; }
-    .nav-links::-webkit-scrollbar { display: none; }
-    .nav-links a { font-size: 0.72rem; }
-    .nav-links li:not(:last-child):not(:first-child) { display: none; }
-    #about .about-grid { grid-template-columns: 1fr; gap: 44px; }
-    .verse-note { margin-top: 30px; }
-    .biz-grid { grid-template-columns: 1fr; }
-    .biz-card { padding: 38px 30px 42px; }
-    .chan-grid { grid-template-columns: 1fr; gap: 40px; }
-    .road-grid { grid-template-columns: 1fr; }
-    section { padding: 96px 0; }
-    .hero-kr { letter-spacing: 1em; text-indent: 1em; }
+    .panel { padding: 74px 28px 80px; }
+    .bar { padding: 16px 20px; }
+    .bar nav { gap: 16px; }
+    .bar nav a:not(.out) { display: none; }
+    .about { grid-template-columns: 1fr; gap: 44px; }
+    .item { grid-template-columns: 1fr; gap: 8px; padding: 26px 0; }
+    .item .tag { padding-top: 0; }
+    .chans { grid-template-columns: 1fr; gap: 36px; }
+    .plans { grid-template-columns: 1fr; }
+    .hero { padding: 84px 20px 78px; }
   }
   @media (max-width: 540px) {
-    .hero-mark { letter-spacing: 0.14em; text-indent: 0.14em; -webkit-text-stroke-width: 1.5px; }
-    .btn { padding: 14px 26px; font-size: 0.78rem; letter-spacing: 0.2em; }
-    .overview .row { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
+    .hero .wordmark { letter-spacing: 0.18em; text-indent: 0.18em; }
+    .spec .row { grid-template-columns: 96px 1fr; gap: 12px; }
+    .btn { padding: 13px 22px; }
   }
-  /* 기기가 다크 모드여도 라이트 팔레트를 유지합니다 */
   @media (prefers-color-scheme: dark) {
-    html, body { background-color: #FCFCFB; color: #22282F; }
-    header, section, footer, nav { color: inherit; }
-    #channels { background-color: #1B4573; color: #FCFCFB; }
+    html, body { background-color: #EDEAE3; color: #1B1A16; }
+    .panel { background-color: #FBFAF7; }
+    .dark { background-color: #26241E; color: #FBFAF7; }
   }
-
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .scroll-hint::after { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
-    .vis, .btn, .biz-card { transition: none; }
+    .btn, .mail, .bar nav a { transition: none; }
   }
 </style>
 </head>
@@ -362,58 +284,66 @@
 
 <a class="skip" href="#about">본문 바로가기</a>
 
-<nav id="nav" aria-label="주요 메뉴">
-  <a class="nav-logo" href="#top">Favor</a>
-  <ul class="nav-links">
-    <li><a href="#about">회사 소개</a></li>
-    <li><a href="#business">사업 내용</a></li>
-    <li><a href="#channels">운영 채널</a></li>
-    <li><a href="#roadmap">로드맵</a></li>
-    <li><a href="#contact">문의</a></li>
-    <li><a class="shop" href="https://favor2025.cafe24.com" target="_blank" rel="noopener">공식몰 ↗</a></li>
-  </ul>
-</nav>
+<div class="bar" id="bar">
+  <a class="wm" href="#top">Favor</a>
+  <nav aria-label="주요 메뉴">
+    <a class="mono" href="#about">회사 소개</a>
+    <a class="mono" href="#work">사업 내용</a>
+    <a class="mono" href="#channels">유통 채널</a>
+    <a class="mono" href="#contact">문의</a>
+    <a class="mono out" href="https://favor2025.cafe24.com" target="_blank" rel="noopener">공식몰 ↗</a>
+  </nav>
+</div>
 
 <!-- ================= HERO ================= -->
-<header id="top" class="paper-bg">
-  <span class="cross c1" aria-hidden="true"></span>
-  <span class="cross c2" aria-hidden="true"></span>
-  <span class="cross c3" aria-hidden="true"></span>
-  <span class="cross c4" aria-hidden="true"></span>
+<header class="hero" id="top">
+  <h1 class="wordmark">Favor</h1>
+  <p class="kr mono">파보르 · 화장품 유통</p>
 
-  <p class="hero-kr reveal">파보르</p>
-  <div class="hero-mark reveal d1">Favor</div>
-
-  <p class="hero-slogan reveal d2">우리의 얼굴을 윤택하게</p>
-  <p class="hero-sub reveal d3">
-    국내외 화장품을 직접 골라 국내 오픈마켓과 해외 플랫폼에서 전합니다.
+  <p class="slogan">우리의 얼굴을 윤택하게</p>
+  <p class="sub">
+    국내외 화장품을 직접 골라 국내 오픈마켓과 해외 플랫폼에 공급합니다.
     잘 팔리는 제품보다 오래 곁에 둘 만한 제품을 찾습니다.
   </p>
-  <div class="hero-actions reveal d4">
-    <a class="btn btn-solid" href="#about">About Favor →</a>
-    <a class="btn btn-line" href="https://favor2025.cafe24.com" target="_blank" rel="noopener">공식몰</a>
-  </div>
 
-  <div class="scroll-hint" aria-hidden="true">Scroll</div>
+  <!-- 화장품 카톤 뒷면의 규격 표기판 형식 -->
+  <section class="spec" aria-label="회사 개요">
+    <div class="cap mono"><span>Company Profile</span><b>FAVOR</b></div>
+    <dl>
+      <div class="row"><dt class="mono">Est.</dt><dd>2024. 07. 02</dd></div>
+      <div class="row"><dt class="mono">대표</dt><dd>전두리</dd></div>
+      <div class="row"><dt class="mono">업종</dt><dd>전자상거래 · 화장품, 건강기능식품</dd></div>
+      <div class="row"><dt class="mono">취급</dt><dd>화장품 유통 · 크로스보더 커머스</dd></div>
+      <div class="row"><dt class="mono">채널</dt><dd>스마트스토어 · 쿠팡 · 자사몰 · Shopee · Qoo10</dd></div>
+      <!-- ✏️ 소재지 — 사업자등록증 기준으로 확인해 주세요 -->
+      <div class="row"><dt class="mono">소재지</dt><dd>서울시 강서구 양천로 94</dd></div>
+    </dl>
+  </section>
+
+  <div class="acts">
+    <a class="btn fill mono" href="#about">회사 소개</a>
+    <a class="btn ghost mono" href="https://favor2025.cafe24.com" target="_blank" rel="noopener">공식몰</a>
+  </div>
 </header>
 
-<!-- ================= ABOUT ================= -->
-<section id="about" class="paper-bg">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="reveal">
-        <p class="eyebrow">About</p>
-        <div class="story-word">Favor</div>
+<main class="shelf">
 
-        <p class="verse-note">
-          좋은 제품을 만나면 혼자 알기 아깝습니다.
+  <!-- ================= ABOUT ================= -->
+  <section class="panel" id="about">
+    <div class="about">
+      <div class="reveal">
+        <span class="eyebrow mono">About</span>
+        <p class="mark">Favor</p>
+        <p class="aside">
+          좋은 제품을 만나면 혼자 알기 아깝습니다.<br>
           그 마음으로 고르고, 그 마음으로 건넵니다.
         </p>
       </div>
-      <div class="about-body reveal d2">
+
+      <div class="body reveal d1">
         <p class="lead">
-          FAVOR는 2024년 7월에 문을 연 전자상거래 회사입니다.
-          국내외 화장품을 직접 골라 <strong>부담 없는 가격</strong>으로 건넵니다.
+          FAVOR는 2024년 7월에 문을 연 화장품 유통 회사입니다.
+          국내외 화장품을 직접 골라 <b>부담 없는 가격</b>으로 건넵니다.
         </p>
         <p>
           좋은 화장품은 얼굴을 윤택하게 하고, 쓰는 사람의 마음까지 밝게 합니다.
@@ -428,180 +358,147 @@
           국내 오픈마켓과 자사몰, 해외 플랫폼을 함께 운영하며
           채널마다 다른 고객에 맞춰 상품을 준비하는 이유입니다.
         </p>
-
-        <div class="overview">
-          <div class="row"><div class="k">Founded</div><div class="v">2024년 7월 2일</div></div>
-          <div class="row"><div class="k">CEO</div><div class="v">전두리</div></div>
-          <div class="row"><div class="k">Business</div><div class="v">전자상거래 (화장품, 건강기능식품)</div></div>
-          <!-- ✏️ 소재지 — 기업소개서에는 '경기도 고양시'로 기재되어 있습니다. 확인 후 통일하세요. -->
-          <div class="row"><div class="k">Location</div><div class="v">서울시 강서구 양천로 94</div></div>
-          <div class="row"><div class="k">Field</div><div class="v">K-뷰티 화장품 리셀 · 크로스보더 커머스</div></div>
-          <div class="row"><div class="k">Channels</div><div class="v">스마트스토어 · 쿠팡 · 자사몰 · Shopee · Qoo10</div></div>
-        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= BUSINESS ================= -->
-<section id="business">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">What We Do</p>
-      <h2>선물이 될 만한 제품을<br><strong>고르고 전하는 일</strong>을 합니다</h2>
-      <p class="note">
-        고르는 일부터 파는 일, 그 뒤의 응대까지.
-        지금 파보르가 직접 하고 있는 일입니다.
-      </p>
+  <!-- ================= WORK ================= -->
+  <section class="panel" id="work">
+    <div class="head reveal">
+      <span class="eyebrow mono">What we do</span>
+      <h2>선물이 될 만한 제품을 <em>고르고 전하는 일</em>을 합니다</h2>
+      <p class="note">고르는 일부터 파는 일, 그 뒤의 응대까지. 지금 파보르가 직접 하고 있는 일입니다.</p>
     </div>
 
-    <div class="biz-grid">
-      <article class="biz-card reveal d1">
-        <span class="k">Sourcing</span>
-        <h3>K-뷰티 제품 선별 &amp; 리셀</h3>
+    <div class="work">
+      <article class="item reveal">
+        <span class="tag mono">Sourcing</span>
+        <h3>제품 선별 &amp; 매입</h3>
         <p>국내외 화장품 가운데 오래 쓸 만한 제품을 골라 매입합니다. 고른 제품은 부담 없는 가격으로 내놓습니다.</p>
       </article>
-      <article class="biz-card reveal d2">
-        <span class="k">Commerce</span>
+      <article class="item reveal">
+        <span class="tag mono">Domestic</span>
         <h3>국내 채널 운영</h3>
         <p>스마트스토어, 쿠팡, 자사몰을 함께 운영하며 채널별 고객층에 맞춰 상품 구성과 가격을 관리합니다.</p>
       </article>
-      <article class="biz-card reveal d3">
-        <span class="k">Cross-border</span>
-        <h3>해외 플랫폼 판매</h3>
+      <article class="item reveal">
+        <span class="tag mono">Cross-border</span>
+        <h3>해외 플랫폼 공급</h3>
         <p>Shopee, Qoo10 등 다국적 플랫폼에서 K-뷰티 제품을 판매하며, 해외 배송과 현지 고객 문의에 대응합니다.</p>
       </article>
-      <article class="biz-card reveal d4">
-        <span class="k">Operation</span>
+      <article class="item reveal">
+        <span class="tag mono">Operation</span>
         <h3>재고 관리 &amp; 고객 응대</h3>
         <p>판매 흐름에 맞춰 매입과 재고를 조정합니다. 주문, 배송, 교환까지 고객 문의는 저희가 직접 받습니다.</p>
       </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= CHANNELS ================= -->
-<section id="channels">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Channels</p>
-      <h2>찾는 사람이 있는 곳으로,<br><strong>국내에서 해외까지</strong></h2>
-      <p class="note">
-        플랫폼마다 찾는 사람이 다릅니다.
-        그래서 채널별로 상품 구성과 소개 방식을 따로 준비합니다.
-      </p>
+  <!-- ================= CHANNELS ================= -->
+  <section class="panel dark" id="channels">
+    <div class="head reveal">
+      <span class="eyebrow mono">Channels</span>
+      <h2>찾는 사람이 있는 곳으로,<br><em>국내에서 해외까지</em></h2>
+      <p class="note">플랫폼마다 찾는 사람이 다릅니다. 그래서 채널별로 상품 구성과 소개 방식을 따로 준비합니다.</p>
     </div>
 
-    <div class="chan-grid">
-      <div class="chan reveal d1">
-        <p class="t">Domestic</p>
-        <ul>
-          <li>스마트스토어</li>
-          <li>쿠팡</li>
-          <li>자사몰</li>
-        </ul>
+    <div class="chans">
+      <div class="chan reveal">
+        <p class="t mono">Domestic</p>
+        <ul><li>스마트스토어</li><li>쿠팡</li><li>자사몰</li></ul>
         <p class="cap">국내 오픈마켓과 자사 쇼핑몰을 함께 운영합니다.</p>
       </div>
-      <div class="chan reveal d2">
-        <p class="t">Global</p>
-        <ul>
-          <li>Shopee</li>
-          <li>Qoo10</li>
-        </ul>
-        <p class="cap">동남아시아와 일본을 중심으로 한 다국적 플랫폼에서 판매하고 있습니다.</p>
+      <div class="chan reveal d1">
+        <p class="t mono">Global</p>
+        <ul><li>Shopee</li><li>Qoo10</li></ul>
+        <p class="cap">동남아시아와 일본을 중심으로 한 다국적 플랫폼에서 판매합니다.</p>
       </div>
-      <div class="chan reveal d3">
-        <p class="t">Preparing</p>
-        <ul class="soon">
-          <li>Amazon US</li>
-        </ul>
-        <p class="cap">미국 시장 진출을 위해 아마존 입점을 준비하고 있습니다.</p>
+      <div class="chan next reveal d2">
+        <p class="t mono">Preparing</p>
+        <ul><li>Amazon US</li></ul>
+        <p class="cap">미국 시장 진출을 위해 입점을 준비하고 있습니다.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= ROADMAP ================= -->
-<section id="roadmap" class="paper-bg">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Roadmap</p>
-      <h2>지금 하는 일 다음에,<br><strong>준비하고 있는 일</strong></h2>
-      <p class="note">
-        아직 시작하지 않은 일들입니다.
-        순서와 시점은 형편에 맞춰 조정하고 있습니다.
-      </p>
+  <!-- ================= ROADMAP ================= -->
+  <section class="panel" id="roadmap">
+    <div class="head reveal">
+      <span class="eyebrow mono">Roadmap</span>
+      <h2>지금 하는 일 다음에, <em>준비하고 있는 일</em></h2>
+      <p class="note">아직 시작하지 않은 일들입니다. 순서와 시점은 형편에 맞춰 조정하고 있습니다.</p>
     </div>
 
-    <div class="road-grid">
-      <div class="vis reveal d1">
-        <span class="en">Category</span>
+    <div class="plans">
+      <div class="plan reveal">
+        <span class="tag mono">Category</span>
         <h3>건강기능식품 확대</h3>
         <p>화장품에 이어 건강기능식품까지 취급 품목을 넓혀, 고객의 건강한 라이프스타일을 함께 다룹니다.</p>
-        <span class="road-tag">준비 중</span>
+        <span class="state mono">준비 중</span>
       </div>
-      <div class="vis reveal d1">
-        <span class="en">Content</span>
+      <div class="plan reveal">
+        <span class="tag mono">Content</span>
         <h3>라이브커머스 &amp; 숏폼</h3>
         <p>라이브 방송과 숏폼 콘텐츠를 자체 제작해, 제품의 사용감을 직접 보여주는 판매 접점을 만듭니다.</p>
-        <span class="road-tag">준비 중</span>
+        <span class="state mono">준비 중</span>
       </div>
-      <div class="vis reveal d2">
-        <span class="en">Global</span>
+      <div class="plan reveal">
+        <span class="tag mono">Global</span>
         <h3>아마존 US 입점</h3>
         <p>미국 시장 진출을 위해 아마존 입점을 준비하고 있습니다. 현지 물류와 인증 요건을 검토하는 단계입니다.</p>
-        <span class="road-tag">준비 중</span>
+        <span class="state mono">준비 중</span>
       </div>
-      <div class="vis reveal d2">
-        <span class="en">Own Product</span>
+      <div class="plan reveal d1">
+        <span class="tag mono">Own product</span>
         <h3>OEM 자체 제품</h3>
         <p>OEM 제품 기획을 통해 파보르가 직접 만든 상품군을 갖추고, 유통을 넘어 제품으로 확장합니다.</p>
-        <span class="road-tag">준비 중</span>
+        <span class="state mono">준비 중</span>
       </div>
-      <!-- ✏️ 아래 항목은 소개서에 제목만 있어 초안으로 작성했습니다. 실제 계획과 맞는지 확인해 주세요. -->
-      <div class="vis reveal d3">
-        <span class="en">Sustainability</span>
+      <!-- ✏️ 아래 항목은 소개서에 제목만 있어 초안으로 작성했습니다 -->
+      <div class="plan reveal d1">
+        <span class="tag mono">Sustainability</span>
         <h3>친환경 브랜드 개발</h3>
         <p>성분과 포장재까지 고려한 자체 친환경 브랜드를 준비합니다. 오래 쓸 만한 제품을 만드는 것이 목표입니다.</p>
-        <span class="road-tag">준비 중</span>
+        <span class="state mono">준비 중</span>
       </div>
-      <div class="vis reveal d3">
-        <span class="en">Automation</span>
+      <div class="plan reveal d1">
+        <span class="tag mono">Automation</span>
         <h3>운영 &amp; 마케팅 자동화</h3>
-        <p>SNS 광고 자동화와 Shopee API 연동으로 광고 집행과 데이터 분석을 효율화하고, 데이터 기반 맞춤 추천을 도입합니다.</p>
-        <span class="road-tag">준비 중</span>
+        <p>SNS 광고 자동화와 Shopee API 연동으로 광고 집행과 데이터 분석을 효율화하고, 맞춤 추천을 도입합니다.</p>
+        <span class="state mono">준비 중</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="paper-bg">
-  <div class="wrap contact-inner">
-    <p class="eyebrow reveal">Contact</p>
-    <h2 class="reveal d1">어떤 이야기든<br><strong>먼저 듣겠습니다</strong></h2>
-    <p class="lead reveal d2">
-      브랜드 공급 제안, 채널 제휴, 그 밖의 무엇이든 좋습니다.<br>
-      메일 주시면 영업일 기준 이틀 안에 답을 드립니다.
-    </p>
-    <a class="contact-mail reveal d3" href="mailto:favor.adooropened@gmail.com">favor.adooropened@gmail.com</a>
-    <p class="contact-tel reveal d3">전화 070-8058-9608</p>
-  </div>
-</section>
+  <!-- ================= CONTACT ================= -->
+  <section class="panel contact" id="contact">
+    <div class="head reveal">
+      <span class="eyebrow mono">Contact</span>
+      <h2>어떤 이야기든 <em>먼저 듣겠습니다</em></h2>
+      <p class="lead">
+        브랜드 공급 제안, 채널 제휴, 그 밖의 무엇이든 좋습니다.<br>
+        메일 주시면 영업일 기준 이틀 안에 답을 드립니다.
+      </p>
+    </div>
+    <a class="mail reveal d1" href="mailto:favor.adooropened@gmail.com">favor.adooropened@gmail.com</a>
+    <p class="tel mono reveal d1">T. 070-8058-9608</p>
+  </section>
+
+</main>
 
 <footer>
-  <div class="foot-in">
-    <div class="foot-top">
-      <span class="foot-mark">Favor</span>
-      <div class="foot-links">
+  <div class="foot">
+    <div class="top">
+      <span class="wm">Favor</span>
+      <div class="links mono">
         <a href="https://favor2025.cafe24.com" target="_blank" rel="noopener">공식몰</a>
-        <a href="mailto:favor.adooropened@gmail.com">문의 메일</a>
+        <a href="mailto:favor.adooropened@gmail.com">문의</a>
         <a href="#top">맨 위로</a>
       </div>
     </div>
 
     <!-- ✏️ 사업자 정보 — 사업자등록증 기준으로 최종 확인하세요 -->
-    <div class="biz-info">
+    <div class="info">
       <span>상호 파보르(FAVOR)</span>
       <span>대표 전두리</span>
       <span>사업자등록번호 299-23-01909</span><br>
@@ -609,13 +506,13 @@
       <span>전화 070-8058-9608</span>
       <span>이메일 favor.adooropened@gmail.com</span>
     </div>
-    <p class="copy">© 2026 FAVOR. All rights reserved.</p>
+    <p class="copy mono">© 2026 Favor. All rights reserved.</p>
   </div>
 </footer>
 
 <script>
-  var nav = document.getElementById('nav');
-  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
+  var bar = document.getElementById('bar');
+  var onScroll = function () { bar.classList.toggle('stuck', window.scrollY > 8); };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -629,7 +526,7 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
     for (var j = 0; j < targets.length; j++) io.observe(targets[j]);
   }
 </script>
