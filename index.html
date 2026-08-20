@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
-<meta name="theme-color" content="#F2EFE6">
+<meta name="theme-color" content="#FAF9F6">
 <title>파보르 FAVOR — 화장품 유통</title>
 <meta name="description" content="FAVOR(파보르)는 2024년에 시작된 화장품 유통 회사입니다. 누구에게나 선물이 될 만한 좋은 화장품을 직접 골라 국내 오픈마켓과 해외 플랫폼에 공급합니다.">
 <meta property="og:type" content="website">
@@ -14,40 +14,44 @@
 <meta property="og:locale" content="ko_KR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: only light;
 
     /* 색은 기존 팔레트 그대로 */
-    --paper: #F2EFE6;
+    --paper: #FAF9F6;
     --card: #FFFFFF;
-    --line: #E5E0D3;
-    --ink: #1F2733;
-    --muted: #616B7A;
-    --accent: #2E4C7A;
-    --accent-ink: #21395E;
-    --accent-soft: #C7D6EA;
-    --tint: #EAF0F7;
-    --tint2: #FAF8F1;
+    --line: #E8E6E1;
+    --ink: #1B1E23;
+    --muted: #5C6470;
+    --accent: #2864A0;
+    --accent-ink: #123256;
+    --accent-soft: #8CAAC8;
+    --tint: #F0F4F8;
+    --tint2: #FBFBFA;
 
-    --display: 'Syne', sans-serif;
+    --display: 'Cormorant Garamond', serif;
     --serif-en: 'Cormorant Garamond', serif;
     --serif-kr: 'Noto Serif KR', serif;
     --mono: 'IBM Plex Mono', monospace;
     --sans: 'Noto Sans KR', sans-serif;
 
-    --r: 26px;
-    --r-sm: 16px;
+    --r: 20px;
+    --r-sm: 14px;
     --pill: 999px;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; color-scheme: only light; background-color: #F2EFE6; }
+  html { scroll-behavior: smooth; color-scheme: only light; background-color: #FAF9F6; }
 
   body {
     background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 46px 46px;
     color: var(--ink);
     font-family: var(--sans);
     font-weight: 400;
@@ -68,6 +72,7 @@
   .shelf { max-width: 1140px; margin: 0 auto; padding: 0 18px 18px; }
   .panel {
     background-color: var(--card);
+    border: 1px solid var(--line);
     border-radius: var(--r);
     padding: 96px 8% 104px;
     margin-bottom: 14px;
@@ -114,16 +119,16 @@
     -webkit-backdrop-filter: blur(18px) saturate(150%);
     backdrop-filter: blur(18px) saturate(150%);
     border-radius: var(--pill);
-    box-shadow: 0 1px 2px rgba(31, 39, 51, 0.06);
+    box-shadow: 0 1px 2px rgba(27, 30, 35, 0.05);
     transition: box-shadow 0.4s var(--ease), background-color 0.4s var(--ease);
   }
   .bar.stuck {
     background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 8px 30px rgba(31, 39, 51, 0.12);
+    box-shadow: 0 8px 30px rgba(27, 30, 35, 0.1);
   }
   .bar .wm {
-    font-family: var(--display); font-weight: 800;
-    font-size: 1.1rem; letter-spacing: 0.02em; text-transform: uppercase;
+    font-family: var(--display); font-weight: 600;
+    font-size: 1.25rem; letter-spacing: 0.26em; text-indent: 0.26em; text-transform: uppercase;
   }
   .bar nav { display: flex; align-items: center; gap: 6px; overflow-x: auto; scrollbar-width: none; }
   .bar nav::-webkit-scrollbar { display: none; }
@@ -137,26 +142,17 @@
   .bar nav a.out:hover { background-color: var(--accent-ink); color: #FFF; }
 
   /* ── 히어로 ── */
-  .hero { padding: 116px 20px 96px; text-align: center; position: relative; }
-  .hero::before {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 46px 46px;
-    -webkit-mask-image: radial-gradient(ellipse 70% 62% at 50% 42%, #000 38%, transparent 76%);
-    mask-image: radial-gradient(ellipse 70% 62% at 50% 42%, #000 38%, transparent 76%);
-  }
-  .hero > * { position: relative; }
+  .hero { padding: 116px 20px 96px; text-align: center; }
+
   .hero .wordmark {
-    font-family: var(--display); font-weight: 800;
-    font-size: clamp(3.6rem, 15vw, 11rem);
-    line-height: 0.9; letter-spacing: -0.02em;
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(4rem, 17vw, 12.5rem);
+    line-height: 0.92; letter-spacing: 0.06em; text-indent: 0.06em;
     text-transform: uppercase;
-    color: rgba(199, 214, 234, 0.38);
-    -webkit-text-stroke: 2.5px var(--accent);
+    color: rgba(140, 170, 200, 0.24);
+    -webkit-text-stroke: 2px var(--accent);
   }
-  @supports not (-webkit-text-stroke: 2.5px #2E4C7A) {
+  @supports not (-webkit-text-stroke: 2px #2864A0) {
     .hero .wordmark { color: var(--accent); }
   }
   .hero .kr {
@@ -189,7 +185,8 @@
   /* ── 흐르는 띠 ── */
   .strip {
     overflow: hidden;
-    background-color: var(--tint);
+    background-color: var(--card);
+    border: 1px solid var(--line);
     color: var(--accent-ink);
     border-radius: var(--pill);
     max-width: 1140px; margin: 0 auto 14px;
@@ -212,18 +209,18 @@
   /* ── 회사 소개 ── */
   .about { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 6%; align-items: start; }
   .about .mark {
-    font-family: var(--display); font-weight: 800;
-    font-size: clamp(2.6rem, 6vw, 4.4rem);
-    line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase;
-    color: rgba(199, 214, 234, 0.32);
-    -webkit-text-stroke: 1.8px var(--accent);
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(3rem, 7vw, 5.2rem);
+    line-height: 0.98; letter-spacing: 0.05em; text-transform: uppercase;
+    color: rgba(140, 170, 200, 0.2);
+    -webkit-text-stroke: 1.5px var(--accent);
   }
-  @supports not (-webkit-text-stroke: 1.8px #2E4C7A) {
+  @supports not (-webkit-text-stroke: 1.5px #2864A0) {
     .about .mark { color: var(--accent); }
   }
   .about .aside {
-    margin-top: 28px; padding: 26px 28px;
-    background-color: var(--tint); border-radius: var(--r-sm);
+    margin-top: 28px; padding: 24px 26px;
+    border-left: 2px solid var(--accent); border-radius: 0;
     font-size: 0.95rem; line-height: 1.85; color: var(--ink);
   }
   .about .body p + p { margin-top: 1.6em; }
@@ -240,8 +237,9 @@
   .item {
     display: grid; grid-template-columns: 130px 220px 1fr; gap: 28px;
     align-items: baseline;
-    padding: 28px 30px;
-    background-color: var(--tint2); border-radius: var(--r-sm);
+    padding: 26px 28px;
+    background-color: transparent;
+    border: 1px solid var(--line); border-radius: var(--r-sm);
     transition: background-color 0.35s var(--ease), transform 0.35s var(--ease);
   }
   .item:hover { background-color: var(--tint); transform: translateX(6px); }
@@ -267,9 +265,9 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.28);
   }
   .chan li {
-    font-family: var(--display); font-weight: 700;
-    font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.6;
-    letter-spacing: -0.03em;
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.55;
+    letter-spacing: 0.01em;
   }
   .chan.next li { color: rgba(255, 255, 255, 0.55); }
   .chan .cap { margin-top: 16px; font-size: 0.88rem; color: rgba(255, 255, 255, 0.8); }
@@ -277,7 +275,8 @@
   /* ── 로드맵 ── */
   .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .plan {
-    background-color: var(--tint2); border-radius: var(--r-sm);
+    background-color: transparent;
+    border: 1px solid var(--line); border-radius: var(--r-sm);
     padding: 30px 28px 32px;
     display: flex; flex-direction: column;
     transition: background-color 0.35s var(--ease), transform 0.35s var(--ease);
@@ -336,11 +335,11 @@
   footer { padding: 34px 20px 56px; }
   .foot { max-width: 1140px; margin: 0 auto; padding: 0 18px; }
   .foot .top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
-  .foot .wm { font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; text-transform: uppercase; }
+  .foot .wm { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.24em; text-indent: 0.24em; text-transform: uppercase; }
   .foot .links { display: flex; gap: 8px; flex-wrap: wrap; }
   .foot .links a {
     color: var(--muted); padding: 8px 14px;
-    background-color: var(--card); border-radius: var(--pill);
+    background-color: var(--card); border: 1px solid var(--line); border-radius: var(--pill);
     transition: color 0.3s var(--ease), background-color 0.3s var(--ease);
   }
   .foot .links a:hover { color: var(--accent); background-color: var(--tint); }
@@ -357,12 +356,12 @@
   }
   .stat .n {
     display: block;
-    font-family: var(--display); font-weight: 800;
-    font-size: clamp(3rem, 7vw, 4.6rem); line-height: 1;
-    letter-spacing: -0.05em;
-    color: transparent; -webkit-text-stroke: 1.5px #FFFFFF;
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(3.4rem, 7.6vw, 5.2rem); line-height: 1;
+    letter-spacing: 0.01em;
+    color: transparent; -webkit-text-stroke: 1.3px #FFFFFF;
   }
-  @supports not (-webkit-text-stroke: 1.5px #FFFFFF) { .stat .n { color: #FFFFFF; } }
+  @supports not (-webkit-text-stroke: 1.3px #FFFFFF) { .stat .n { color: #FFFFFF; } }
   .stat .k { margin-top: 18px; font-weight: 700; letter-spacing: -0.01em; }
   .stat .d { margin-top: 6px; font-size: 0.86rem; color: rgba(255, 255, 255, 0.8); }
 
@@ -378,14 +377,14 @@
   }
   .field input, .field textarea {
     width: 100%; font: inherit; color: var(--ink);
-    background-color: var(--tint2);
-    border: 1px solid transparent; border-radius: 14px;
+    background-color: var(--card);
+    border: 1px solid var(--line); border-radius: 12px;
     padding: 14px 16px; resize: vertical;
     transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease);
   }
-  .field input::placeholder, .field textarea::placeholder { color: #99A0AB; }
+  .field input::placeholder, .field textarea::placeholder { color: #9AA1AC; }
   .field input:focus, .field textarea:focus {
-    outline: none; background-color: var(--card); border-color: var(--accent);
+    outline: none; border-color: var(--accent);
   }
   .send {
     width: 100%; font: inherit; font-weight: 700; letter-spacing: -0.01em;
@@ -417,7 +416,7 @@
     .plans { grid-template-columns: 1fr; }
     .plan:hover { transform: none; }
     .hero { padding: 76px 20px 68px; }
-    .hero .wordmark { -webkit-text-stroke-width: 1.8px; }
+    .hero .wordmark { -webkit-text-stroke-width: 1.4px; }
     .strip { border-radius: 0; }
   }
   @media (max-width: 540px) {
@@ -426,9 +425,9 @@
     .btn { padding: 13px 24px; }
   }
   @media (prefers-color-scheme: dark) {
-    html, body { background-color: #F2EFE6; color: #1F2733; }
+    html, body { background-color: #FAF9F6; color: #1B1E23; }
     .panel { background-color: #FFFFFF; }
-    .dark { background-color: #21395E; color: #FFFFFF; }
+    .dark { background-color: #123256; color: #FFFFFF; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
