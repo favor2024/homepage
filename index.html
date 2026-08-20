@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
-<meta name="theme-color" content="#FAF7F3">
+<meta name="theme-color" content="#F2EFE6">
 <title>파보르 FAVOR — 화장품 유통</title>
 <meta name="description" content="FAVOR(파보르)는 2024년에 시작된 화장품 유통 회사입니다. 누구에게나 선물이 될 만한 좋은 화장품을 직접 골라 국내 오픈마켓과 해외 플랫폼에 공급합니다.">
 <meta property="og:type" content="website">
@@ -14,27 +14,28 @@
 <meta property="og:locale" content="ko_KR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: only light;
 
     /* 색은 기존 팔레트 그대로 */
-    --paper: #FAF7F3;
+    --paper: #F2EFE6;
     --card: #FFFFFF;
-    --line: #EFE9E2;
-    --ink: #2C2823;
-    --muted: #6B655C;
-    --accent: #E0714B;
-    --accent-ink: #BE5732;
-    --accent-soft: #FFD9C8;
-    --tint: #FDF1EC;
-    --tint2: #FBF6F2;
+    --line: #E5E0D3;
+    --ink: #1F2733;
+    --muted: #616B7A;
+    --accent: #2E4C7A;
+    --accent-ink: #21395E;
+    --accent-soft: #C7D6EA;
+    --tint: #EAF0F7;
+    --tint2: #FAF8F1;
 
     --display: 'Syne', sans-serif;
+    --serif-en: 'Cormorant Garamond', serif;
+    --serif-kr: 'Noto Serif KR', serif;
     --mono: 'IBM Plex Mono', monospace;
-    --sans: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    --sans: 'Noto Sans KR', sans-serif;
 
     --r: 26px;
     --r-sm: 16px;
@@ -43,7 +44,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; color-scheme: only light; background-color: #FAF7F3; }
+  html { scroll-behavior: smooth; color-scheme: only light; background-color: #F2EFE6; }
 
   body {
     background-color: var(--paper);
@@ -86,9 +87,9 @@
   .eyebrow i { font-style: normal; color: var(--accent); }
 
   h2 {
-    font-family: var(--sans); font-weight: 700;
-    font-size: clamp(1.75rem, 4.4vw, 3.1rem);
-    line-height: 1.3; letter-spacing: -0.035em;
+    font-family: var(--serif-kr); font-weight: 600;
+    font-size: clamp(1.7rem, 4.2vw, 2.95rem);
+    line-height: 1.4; letter-spacing: -0.02em;
   }
   h2 em { font-style: normal; color: var(--accent); }
   .head { max-width: 720px; margin-bottom: 60px; }
@@ -113,12 +114,12 @@
     -webkit-backdrop-filter: blur(18px) saturate(150%);
     backdrop-filter: blur(18px) saturate(150%);
     border-radius: var(--pill);
-    box-shadow: 0 1px 2px rgba(27, 26, 22, 0.05);
+    box-shadow: 0 1px 2px rgba(31, 39, 51, 0.06);
     transition: box-shadow 0.4s var(--ease), background-color 0.4s var(--ease);
   }
   .bar.stuck {
     background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 8px 30px rgba(27, 26, 22, 0.1);
+    box-shadow: 0 8px 30px rgba(31, 39, 51, 0.12);
   }
   .bar .wm {
     font-family: var(--display); font-weight: 800;
@@ -136,12 +137,27 @@
   .bar nav a.out:hover { background-color: var(--accent-ink); color: #FFF; }
 
   /* ── 히어로 ── */
-  .hero { padding: 116px 20px 96px; text-align: center; }
+  .hero { padding: 116px 20px 96px; text-align: center; position: relative; }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 62% at 50% 42%, #000 38%, transparent 76%);
+    mask-image: radial-gradient(ellipse 70% 62% at 50% 42%, #000 38%, transparent 76%);
+  }
+  .hero > * { position: relative; }
   .hero .wordmark {
     font-family: var(--display); font-weight: 800;
     font-size: clamp(3.6rem, 15vw, 11rem);
-    line-height: 0.9; letter-spacing: -0.035em;
+    line-height: 0.9; letter-spacing: -0.02em;
     text-transform: uppercase;
+    color: rgba(199, 214, 234, 0.38);
+    -webkit-text-stroke: 2.5px var(--accent);
+  }
+  @supports not (-webkit-text-stroke: 2.5px #2E4C7A) {
+    .hero .wordmark { color: var(--accent); }
   }
   .hero .kr {
     display: inline-flex; margin-top: 24px;
@@ -150,9 +166,9 @@
   }
   .hero .slogan {
     margin-top: 40px;
-    font-family: var(--sans); font-weight: 700;
-    font-size: clamp(1.6rem, 5vw, 3rem);
-    line-height: 1.28; letter-spacing: -0.04em;
+    font-family: var(--serif-kr); font-weight: 600;
+    font-size: clamp(1.55rem, 4.8vw, 2.9rem);
+    line-height: 1.36; letter-spacing: -0.02em;
   }
   .hero .sub {
     margin: 22px auto 0; max-width: 520px;
@@ -198,7 +214,12 @@
   .about .mark {
     font-family: var(--display); font-weight: 800;
     font-size: clamp(2.6rem, 6vw, 4.4rem);
-    line-height: 0.95; letter-spacing: -0.04em; text-transform: uppercase;
+    line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase;
+    color: rgba(199, 214, 234, 0.32);
+    -webkit-text-stroke: 1.8px var(--accent);
+  }
+  @supports not (-webkit-text-stroke: 1.8px #2E4C7A) {
+    .about .mark { color: var(--accent); }
   }
   .about .aside {
     margin-top: 28px; padding: 26px 28px;
@@ -208,11 +229,11 @@
   .about .body p + p { margin-top: 1.6em; }
   .about .body p { color: var(--muted); font-size: 0.97rem; }
   .about .body .lead {
-    font-family: var(--sans); font-weight: 700;
-    font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.5;
-    letter-spacing: -0.03em; color: var(--ink);
+    font-family: var(--serif-kr); font-weight: 400;
+    font-size: clamp(1.15rem, 2.3vw, 1.5rem); line-height: 1.7;
+    letter-spacing: -0.01em; color: var(--ink);
   }
-  .about .body .lead b { font-weight: 700; color: var(--accent); }
+  .about .body .lead b { font-weight: 600; color: var(--accent-ink); }
 
   /* ── 사업 내용 ── */
   .work { display: grid; gap: 10px; }
@@ -225,14 +246,14 @@
   }
   .item:hover { background-color: var(--tint); transform: translateX(6px); }
   .item .tag { color: var(--accent-ink); }
-  .item h3 { font-weight: 700; font-size: 1.08rem; letter-spacing: -0.025em; }
+  .item h3 { font-weight: 700; font-size: 1.06rem; letter-spacing: -0.01em; }
   .item p { color: var(--muted); font-size: 0.95rem; }
 
   /* ── 채널 ── */
-  .dark { background-color: var(--accent); color: #FFF; }
+  .dark { background-color: var(--accent-ink); color: #FFF; }
   .dark h2 { color: #FFF; }
   .dark h2 em { color: var(--accent-soft); }
-  .dark .eyebrow { background-color: rgba(255, 255, 255, 0.22); color: #FFF; }
+  .dark .eyebrow { background-color: rgba(255, 255, 255, 0.2); color: #FFF; }
   .dark .eyebrow i { color: rgba(255, 255, 255, 0.6); }
   .dark .head .note { color: rgba(255, 255, 255, 0.78); }
   .chans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -263,7 +284,7 @@
   }
   .plan:hover { background-color: var(--tint); transform: translateY(-4px); }
   .plan .tag { display: block; color: var(--accent-ink); margin-bottom: 14px; }
-  .plan h3 { font-weight: 700; font-size: 1.06rem; margin-bottom: 10px; letter-spacing: -0.025em; }
+  .plan h3 { font-weight: 700; font-size: 1.04rem; margin-bottom: 10px; letter-spacing: -0.01em; }
   .plan p { font-size: 0.93rem; color: var(--muted); }
   .plan .state {
     align-self: flex-start; margin-top: auto; padding: 7px 14px;
@@ -277,9 +298,9 @@
   .contact .lead { margin-top: 22px; color: var(--muted); font-size: 0.96rem; }
   .mail {
     display: inline-block; margin-top: 38px;
-    font-family: var(--display); font-weight: 700;
-    font-size: clamp(1.1rem, 3.4vw, 2.2rem);
-    letter-spacing: -0.03em; word-break: break-all;
+    font-family: var(--serif-en); font-weight: 500;
+    font-size: clamp(1.2rem, 3.6vw, 2.3rem);
+    letter-spacing: 0.01em; word-break: break-all;
     background-color: var(--accent); color: #FFF;
     padding: 16px 32px; border-radius: var(--pill);
     transition: background-color 0.3s var(--ease), transform 0.35s var(--ease);
@@ -342,7 +363,7 @@
     color: transparent; -webkit-text-stroke: 1.5px #FFFFFF;
   }
   @supports not (-webkit-text-stroke: 1.5px #FFFFFF) { .stat .n { color: #FFFFFF; } }
-  .stat .k { margin-top: 18px; font-weight: 700; letter-spacing: -0.02em; }
+  .stat .k { margin-top: 18px; font-weight: 700; letter-spacing: -0.01em; }
   .stat .d { margin-top: 6px; font-size: 0.86rem; color: rgba(255, 255, 255, 0.8); }
 
   /* ── 문의 폼 ── */
@@ -353,7 +374,7 @@
   .field { margin-bottom: 16px; }
   .field label {
     display: block; margin-bottom: 8px;
-    font-size: 0.86rem; font-weight: 700; letter-spacing: -0.02em;
+    font-size: 0.86rem; font-weight: 700; letter-spacing: -0.01em;
   }
   .field input, .field textarea {
     width: 100%; font: inherit; color: var(--ink);
@@ -362,12 +383,12 @@
     padding: 14px 16px; resize: vertical;
     transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease);
   }
-  .field input::placeholder, .field textarea::placeholder { color: #9A948A; }
+  .field input::placeholder, .field textarea::placeholder { color: #99A0AB; }
   .field input:focus, .field textarea:focus {
     outline: none; background-color: var(--card); border-color: var(--accent);
   }
   .send {
-    width: 100%; font: inherit; font-weight: 700; letter-spacing: -0.02em;
+    width: 100%; font: inherit; font-weight: 700; letter-spacing: -0.01em;
     color: #FFF; background-color: var(--accent);
     border: 0; border-radius: var(--pill); padding: 16px 24px;
     cursor: pointer; margin-top: 8px;
@@ -396,6 +417,7 @@
     .plans { grid-template-columns: 1fr; }
     .plan:hover { transform: none; }
     .hero { padding: 76px 20px 68px; }
+    .hero .wordmark { -webkit-text-stroke-width: 1.8px; }
     .strip { border-radius: 0; }
   }
   @media (max-width: 540px) {
@@ -404,9 +426,9 @@
     .btn { padding: 13px 24px; }
   }
   @media (prefers-color-scheme: dark) {
-    html, body { background-color: #FAF7F3; color: #2C2823; }
+    html, body { background-color: #F2EFE6; color: #1F2733; }
     .panel { background-color: #FFFFFF; }
-    .dark { background-color: #E0714B; color: #FFFFFF; }
+    .dark { background-color: #21395E; color: #FFFFFF; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -601,7 +623,7 @@
   <section class="panel contact" id="contact">
     <div class="head reveal">
       <span class="eyebrow mono"><i>05</i>Contact</span>
-      <h2>함께할 수 있는<br><em>많은 길</em>을 열어두었습니다.</h2>
+      <h2>함께 할 수 있는<br><em>많은 길</em>을 열어두었습니다.</h2>
       <p class="lead">
         브랜드 공급 제안, 채널 제휴,<br class="m">그 밖의 무엇이든 좋습니다.<br>
         영업일 기준 3일 이내에 답변을 드리겠습니다.
