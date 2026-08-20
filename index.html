@@ -142,7 +142,7 @@
   .bar nav a.out:hover { background-color: var(--accent-ink); color: #FFF; }
 
   /* ── 히어로 ── */
-  .hero { padding: 116px 20px 96px; text-align: center; }
+  .hero { padding: 116px 20px 96px; text-align: center; position: relative; }
 
   .hero .wordmark {
     font-family: var(--display); font-weight: 500;
@@ -172,15 +172,39 @@
   }
   .acts { display: flex; gap: 10px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
   .btn {
-    display: inline-block; padding: 15px 30px;
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 17px 34px;
+    font-weight: 600; font-size: 0.98rem; letter-spacing: 0.01em;
     border-radius: var(--pill); border: 1px solid transparent;
-    transition: transform 0.35s var(--ease), background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+                background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
   }
-  .btn:hover { transform: translateY(-2px); }
-  .btn.fill { background-color: var(--accent); color: #FFF; }
-  .btn.fill:hover { background-color: var(--accent-ink); }
-  .btn.ghost { color: var(--ink); border-color: var(--line); background-color: var(--card); }
-  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn .arw { transition: transform 0.35s var(--ease); }
+  .btn:hover { transform: translateY(-3px); }
+  .btn:hover .arw { transform: translateX(4px); }
+  .btn.fill {
+    background: linear-gradient(160deg, #3A76B4 0%, var(--accent) 45%, var(--accent-ink) 100%);
+    color: #FFF;
+    box-shadow: 0 12px 26px rgba(40, 100, 160, 0.3);
+  }
+  .btn.fill:hover { box-shadow: 0 18px 34px rgba(40, 100, 160, 0.36); }
+  .btn.ghost {
+    color: var(--ink); border-color: var(--line); background-color: var(--card);
+    box-shadow: 0 8px 20px rgba(27, 30, 35, 0.06);
+  }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 14px 28px rgba(27, 30, 35, 0.09); }
+
+  /* 모눈 위의 십자 마커 */
+  .plus {
+    position: absolute; pointer-events: none; user-select: none;
+    font-family: var(--mono); font-weight: 400;
+    font-size: 1.15rem; line-height: 1;
+    color: var(--accent-soft);
+  }
+  .p1 { top: 20%; left: 9%; }
+  .p2 { top: 30%; right: 11%; }
+  .p3 { bottom: 20%; left: 15%; }
+  .p4 { bottom: 27%; right: 8%; }
 
   /* ── 흐르는 띠 ── */
   .strip {
@@ -416,6 +440,7 @@
     .plans { grid-template-columns: 1fr; }
     .plan:hover { transform: none; }
     .hero { padding: 76px 20px 68px; }
+    .plus { display: none; }
     .hero .wordmark { -webkit-text-stroke-width: 1.4px; }
     .strip { border-radius: 0; }
   }
@@ -464,9 +489,14 @@
 
 
   <div class="acts">
-    <a class="btn fill mono" href="#about">회사 소개</a>
-    <a class="btn ghost mono" href="https://favor2025.cafe24.com" target="_blank" rel="noopener">공식몰</a>
+    <a class="btn fill" href="#about">회사 소개<span class="arw" aria-hidden="true">→</span></a>
+    <a class="btn ghost" href="https://favor2025.cafe24.com" target="_blank" rel="noopener">공식몰<span class="arw" aria-hidden="true">↗</span></a>
   </div>
+
+  <span class="plus p1" aria-hidden="true">+</span>
+  <span class="plus p2" aria-hidden="true">+</span>
+  <span class="plus p3" aria-hidden="true">+</span>
+  <span class="plus p4" aria-hidden="true">+</span>
 </header>
 
 <!-- 카톤 옆면의 인쇄 띠 -->
