@@ -24,7 +24,7 @@
     --shell: #F2EEE9;
     --card: #FFFFFF;
     --ink: #1B1A16;
-    --muted: #5A564C;
+    --muted: #4A473E;
     --line: #E4E0D6;
     --accent: #C75F3F;
     --accent-soft: #E9A489;
@@ -43,10 +43,9 @@
     background-color: var(--shell);
     color: var(--ink);
     font-family: var(--sans);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 17px;
     line-height: 1.82;
-    -webkit-font-smoothing: antialiased;
 
     /* 줄이 바뀔 때 낱말이 중간에서 끊기지 않도록 */
     word-break: keep-all;
@@ -74,7 +73,7 @@
   .run { display: flex; flex-shrink: 0; }
   .run span {
     font-family: var(--mono); font-weight: 500;
-    font-size: 0.63rem; letter-spacing: 0.24em; text-transform: uppercase;
+    font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--muted); white-space: nowrap;
     padding: 0 26px;
     display: inline-flex; align-items: center;
@@ -108,7 +107,7 @@
   .dark .eyebrow i { color: rgba(251, 250, 247, 0.45); border-right-color: rgba(251, 250, 247, 0.25); }
 
   h2 {
-    font-family: var(--serif); font-weight: 300;
+    font-family: var(--serif); font-weight: 400;
     font-size: clamp(1.7rem, 3.8vw, 2.9rem);
     line-height: 1.45; letter-spacing: -0.02em;
   }
@@ -157,7 +156,7 @@
   .hero .kr { margin-top: 26px; color: var(--muted); }
   .hero .slogan {
     margin-top: 46px;
-    font-family: var(--serif); font-weight: 300;
+    font-family: var(--serif); font-weight: 400;
     font-size: clamp(1.5rem, 4.2vw, 2.8rem);
     line-height: 1.4; letter-spacing: -0.015em;
   }
@@ -205,7 +204,7 @@
   /* ── 회사 소개 ── */
   .about { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 7%; align-items: start; }
   .about .mark {
-    font-family: var(--display); font-weight: 300;
+    font-family: var(--display); font-weight: 400;
     font-size: clamp(2.4rem, 5.2vw, 3.9rem);
     line-height: 1; letter-spacing: 0.1em; text-transform: uppercase;
   }
@@ -218,7 +217,7 @@
   .about .body p, .head .note { text-wrap: pretty; }
   .about .body p { color: var(--muted); font-size: 0.94rem; }
   .about .body .lead {
-    font-family: var(--serif); font-weight: 300;
+    font-family: var(--serif); font-weight: 400;
     font-size: 1.14rem; line-height: 1.95; color: var(--ink);
   }
   .about .body .lead b { font-weight: 400; color: var(--accent); }
@@ -254,7 +253,7 @@
     border-bottom: 1px solid rgba(251, 250, 247, 0.2);
   }
   .chan li {
-    font-family: var(--display); font-weight: 300;
+    font-family: var(--display); font-weight: 400;
     font-size: clamp(1.35rem, 2.7vw, 1.8rem); line-height: 1.8;
     letter-spacing: 0.01em;
   }
@@ -283,7 +282,7 @@
 
   /* ── 문의 ── */
   .contact { text-align: center; }
-  .contact .head { max-width: none; margin: 0 auto; }
+  .contact .head { margin: 0 auto; }
   .contact .lead { margin-top: 24px; color: var(--muted); font-size: 0.93rem; }
   .mail {
     display: inline-block; margin-top: 44px;
@@ -304,6 +303,7 @@
   .foot .links { display: flex; gap: 22px; flex-wrap: wrap; color: var(--muted); }
   .foot .links a:hover { color: var(--accent); }
   .foot .info {
+    font-size: 0.78rem;
     margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line);
     font-size: 0.73rem; line-height: 2.1; color: var(--muted);
   }
@@ -428,17 +428,17 @@
       <article class="item reveal">
         <span class="tag mono">Domestic</span>
         <h3>국내 채널 운영</h3>
-        <p>스마트스토어, 쿠팡, 자사몰을 함께 운영하며<br class="m">채널별 고객층에 맞춰 상품 구성과 가격을 관리합니다.</p>
+        <p>스마트스토어, 쿠팡, 자사몰을 함께 운영하며<br class="m">채널별 고객층에 맞춰 상품을 관리합니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Cross-border</span>
         <h3>해외 플랫폼 공급</h3>
-        <p>Shopee, Qoo10 등<br class="m">다국적 플랫폼에서 판매하며<br class="m">해외 배송과 현지 문의에 응대합니다.</p>
+        <p>Shopee, Qoo10 등 다국적 플랫폼에서 판매하며<br class="m">해외 배송과 현지 문의에 응대합니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Operation</span>
         <h3>재고 관리 &amp; 고객 소통</h3>
-        <p>판매 흐름에 맞춰 매입과 재고를 조정하고,<br class="m">주문부터 교환까지 고객의 필요를 파악하여 소통합니다.</p>
+        <p>판매 흐름에 맞춰 매입과 재고를 조정하고,<br class="m">고객의 필요를 파악하여 소통합니다.</p>
       </article>
     </div>
   </section>
@@ -474,7 +474,7 @@
   <section class="panel" id="roadmap">
     <div class="head reveal">
       <span class="eyebrow mono"><i>04</i>Roadmap</span>
-      <h2>더 많이, 더 멀리 <em>닿기 위해</em>.</h2>
+      <h2>더 많이, 더 멀리<br><em>닿기 위해</em>.</h2>
     </div>
 
     <div class="plans">
@@ -522,7 +522,7 @@
   <section class="panel contact" id="contact">
     <div class="head reveal">
       <span class="eyebrow mono"><i>05</i>Contact</span>
-      <h2>함께할 수 있는 <em>많은 길</em>을 열어두었습니다.</h2>
+      <h2>함께할 수 있는<br><em>많은 길</em>을 열어두었습니다.</h2>
       <p class="lead">
         브랜드 공급 제안, 채널 제휴,<br class="m">그 밖의 무엇이든 좋습니다.<br>
         영업일 기준 3일 이내에 답변을 드리겠습니다.
