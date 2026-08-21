@@ -14,8 +14,28 @@
 <meta property="og:locale" content="ko_KR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ── 지마켓 산스 (SIL Open Font License) ── */
+  @font-face {
+    font-family: 'Gmarket Sans';
+    font-weight: 300; font-style: normal; font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansLight.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Gmarket Sans';
+    font-weight: 500; font-style: normal; font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansMedium.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansMedium.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Gmarket Sans';
+    font-weight: 700; font-style: normal; font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansBold.woff') format('woff');
+  }
+
   :root {
     color-scheme: only light;
 
@@ -33,9 +53,9 @@
 
     --display: 'Cormorant Garamond', serif;
     --serif-en: 'Cormorant Garamond', serif;
-    --serif-kr: 'Noto Serif KR', serif;
+    --serif-kr: 'Gmarket Sans', 'Noto Sans KR', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
-    --sans: 'Noto Sans KR', sans-serif;
+    --sans: 'Gmarket Sans', 'Noto Sans KR', sans-serif;
 
     --r: 20px;
     --r-sm: 14px;
@@ -54,7 +74,7 @@
     background-size: 46px 46px;
     color: var(--ink);
     font-family: var(--sans);
-    font-weight: 400;
+    font-weight: 300;
     font-size: 17px;
     line-height: 1.75;
     word-break: keep-all;
@@ -92,9 +112,9 @@
   .eyebrow i { font-style: normal; color: var(--accent); }
 
   h2 {
-    font-family: var(--serif-kr); font-weight: 600;
-    font-size: clamp(1.7rem, 4.2vw, 2.95rem);
-    line-height: 1.4; letter-spacing: -0.02em;
+    font-family: var(--serif-kr); font-weight: 700;
+    font-size: clamp(1.65rem, 4vw, 2.8rem);
+    line-height: 1.38; letter-spacing: -0.03em;
   }
   h2 em { font-style: normal; color: var(--accent); }
   .head { max-width: 720px; margin-bottom: 60px; }
@@ -162,9 +182,9 @@
   }
   .hero .slogan {
     margin-top: 40px;
-    font-family: var(--serif-kr); font-weight: 600;
-    font-size: clamp(1.55rem, 4.8vw, 2.9rem);
-    line-height: 1.36; letter-spacing: -0.02em;
+    font-family: var(--serif-kr); font-weight: 700;
+    font-size: clamp(1.5rem, 4.6vw, 2.75rem);
+    line-height: 1.34; letter-spacing: -0.035em;
   }
   .hero .sub {
     margin: 22px auto 0; max-width: 520px;
@@ -174,7 +194,7 @@
   .btn {
     display: inline-flex; align-items: center; gap: 12px;
     padding: 17px 34px;
-    font-weight: 600; font-size: 0.98rem; letter-spacing: 0.01em;
+    font-weight: 500; font-size: 0.98rem; letter-spacing: -0.01em;
     border-radius: var(--pill); border: 1px solid transparent;
     transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
                 background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
@@ -245,16 +265,16 @@
   .about .aside {
     margin-top: 28px; padding: 24px 26px;
     border-left: 2px solid var(--accent); border-radius: 0;
-    font-size: 0.95rem; line-height: 1.85; color: var(--ink);
+    font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--ink);
   }
   .about .body p + p { margin-top: 1.6em; }
   .about .body p { color: var(--muted); font-size: 0.97rem; }
   .about .body .lead {
-    font-family: var(--serif-kr); font-weight: 400;
-    font-size: clamp(1.15rem, 2.3vw, 1.5rem); line-height: 1.7;
-    letter-spacing: -0.01em; color: var(--ink);
+    font-family: var(--serif-kr); font-weight: 500;
+    font-size: clamp(1.12rem, 2.2vw, 1.44rem); line-height: 1.65;
+    letter-spacing: -0.02em; color: var(--ink);
   }
-  .about .body .lead b { font-weight: 600; color: var(--accent-ink); }
+  .about .body .lead b { font-weight: 700; color: var(--accent-ink); }
 
   /* ── 사업 내용 ── */
   .work { display: grid; gap: 10px; }
@@ -289,9 +309,9 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.28);
   }
   .chan li {
-    font-family: var(--display); font-weight: 600;
-    font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.55;
-    letter-spacing: 0.01em;
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(1.3rem, 2.7vw, 1.8rem); line-height: 1.6;
+    letter-spacing: -0.03em;
   }
   .chan.next li { color: rgba(255, 255, 255, 0.55); }
   .chan .cap { margin-top: 16px; font-size: 0.88rem; color: rgba(255, 255, 255, 0.8); }
@@ -321,9 +341,9 @@
   .contact .lead { margin-top: 22px; color: var(--muted); font-size: 0.96rem; }
   .mail {
     display: inline-block; margin-top: 38px;
-    font-family: var(--serif-en); font-weight: 500;
-    font-size: clamp(1.2rem, 3.6vw, 2.3rem);
-    letter-spacing: 0.01em; word-break: break-all;
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(1.05rem, 3vw, 1.85rem);
+    letter-spacing: -0.03em; word-break: break-all;
     background-color: var(--accent); color: #FFF;
     padding: 16px 32px; border-radius: var(--pill);
     transition: background-color 0.3s var(--ease), transform 0.35s var(--ease);
