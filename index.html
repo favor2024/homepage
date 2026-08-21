@@ -13,6 +13,11 @@
 <meta property="og:description" content="사람의 얼굴을 윤택하게">
 <meta property="og:url" content="https://favor2024.github.io/homepage/">
 <meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://favor2024.github.io/homepage/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FAVOR — 사람의 얼굴을 윤택하게">
+<meta name="twitter:card" content="summary_large_image">
 
 <!-- ✏️ 파비콘 — 실제 파일을 올린 뒤 경로를 바꿔주세요 (지금은 404만 막는 임시값) -->
 <link rel="icon" href="data:,">
@@ -208,10 +213,11 @@
     .hero .wordmark { color: var(--accent); }
   }
   .hero .kr {
-    display: inline-flex; margin-top: 24px;
+    display: inline-block; margin-top: 24px;
     /* 워드마크 속 채움과 같은 색 */
     background-color: rgba(140, 170, 200, 0.14); color: var(--ink);
-    padding: 8px 18px; border-radius: var(--pill);
+    padding: 11px 22px; border-radius: 18px;
+    line-height: 1.9; text-align: center;
   }
   .hero .slogan {
     margin-top: 40px;
@@ -307,8 +313,6 @@
     font-family: var(--warm); font-weight: 400;
     font-size: 1.04rem; line-height: 1.95; letter-spacing: 0;
     color: var(--accent-ink);
-    hanging-punctuation: first last;
-    text-indent: -0.42em;
   }
   .about .body p + p { margin-top: 1.6em; }
   .about .body p { color: var(--muted); font-size: 0.97rem; }
@@ -554,7 +558,7 @@
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
   <h1 class="wordmark">Favor</h1>
-  <p class="kr mono">K-Beauty Distribution · Cross-border Commerce</p>
+  <p class="kr mono">K-Beauty Distribution<br>Cross-border Commerce</p>
 
   <p class="slogan">사람의 얼굴을 윤택하게</p>
   <p class="sub">좋은 화장품을 엄선하여<br class="m">국내 오픈마켓과 해외 플랫폼에 공급합니다.</p>
