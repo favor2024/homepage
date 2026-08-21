@@ -14,7 +14,7 @@
 <meta property="og:locale" content="ko_KR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;500;700&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ── 지마켓 산스 (SIL Open Font License) ── */
   @font-face {
@@ -36,6 +36,15 @@
          url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansBold.woff') format('woff');
   }
 
+  /* 라틴 글꼴과 나란히 놓았을 때 한글이 커 보이는 것을 보정 */
+  @font-face {
+    font-family: 'Gmarket Fit';
+    font-weight: 700; font-style: normal; font-display: swap;
+    size-adjust: 78%;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/GmarketSans/GmarketSansBold.woff') format('woff');
+  }
+
   :root {
     color-scheme: only light;
 
@@ -53,8 +62,9 @@
 
     --display: 'Cormorant Garamond', serif;
     --serif-en: 'Cormorant Garamond', serif;
+    --warm: 'Gowun Batang', serif;
     --serif-kr: 'Gmarket Sans', 'Noto Sans KR', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
+    --mono: 'IBM Plex Mono', 'Gmarket Sans', monospace;
     --sans: 'Gmarket Sans', 'Noto Sans KR', sans-serif;
 
     --r: 20px;
@@ -263,9 +273,13 @@
     .about .mark { color: var(--accent); }
   }
   .about .aside {
-    margin-top: 28px; padding: 24px 26px;
-    border-left: 2px solid var(--accent); border-radius: 0;
-    font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--ink);
+    margin-top: 22px; padding: 26px 28px 28px;
+    background-color: var(--tint); border-radius: var(--r-sm);
+    font-family: var(--warm); font-weight: 400;
+    font-size: 1.04rem; line-height: 1.95; letter-spacing: 0;
+    color: var(--accent-ink);
+    hanging-punctuation: first last;
+    text-indent: -0.42em;
   }
   .about .body p + p { margin-top: 1.6em; }
   .about .body p { color: var(--muted); font-size: 0.97rem; }
@@ -309,9 +323,9 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.28);
   }
   .chan li {
-    font-family: var(--sans); font-weight: 700;
-    font-size: clamp(1.3rem, 2.7vw, 1.8rem); line-height: 1.6;
-    letter-spacing: -0.03em;
+    font-family: var(--display), 'Gmarket Fit', serif; font-weight: 600;
+    font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.55;
+    letter-spacing: 0.01em;
   }
   .chan.next li { color: rgba(255, 255, 255, 0.55); }
   .chan .cap { margin-top: 16px; font-size: 0.88rem; color: rgba(255, 255, 255, 0.8); }
@@ -330,20 +344,24 @@
   .plan h3 { font-weight: 700; font-size: 1.04rem; margin-bottom: 10px; letter-spacing: -0.01em; }
   .plan p { font-size: 0.93rem; color: var(--muted); }
   .plan .state {
-    align-self: flex-start; margin-top: auto; padding: 7px 14px;
-    background-color: var(--card); color: var(--accent-ink);
+    align-self: flex-start; margin-top: auto; padding: 7px 15px;
+    background-color: var(--tint); color: var(--accent-ink);
     border-radius: var(--pill);
   }
 
   /* ── 문의 ── */
   .contact { text-align: center; }
   .contact .head { margin: 0 auto; }
-  .contact .lead { margin-top: 22px; color: var(--muted); font-size: 0.96rem; }
+  .contact .lead {
+    margin-top: 24px; color: var(--muted);
+    font-family: var(--warm); font-weight: 400;
+    font-size: 0.96rem; line-height: 1.85; letter-spacing: 0;
+  }
   .mail {
     display: inline-block; margin-top: 38px;
-    font-family: var(--sans); font-weight: 700;
-    font-size: clamp(1.05rem, 3vw, 1.85rem);
-    letter-spacing: -0.03em; word-break: break-all;
+    font-family: var(--serif-en); font-weight: 500;
+    font-size: clamp(1.2rem, 3.6vw, 2.3rem);
+    letter-spacing: 0.01em; word-break: break-all;
     background-color: var(--accent); color: #FFF;
     padding: 16px 32px; border-radius: var(--pill);
     transition: background-color 0.3s var(--ease), transform 0.35s var(--ease);
@@ -400,12 +418,12 @@
   }
   .stat .n {
     display: block;
-    font-family: var(--display); font-weight: 600;
-    font-size: clamp(3.4rem, 7.6vw, 5.2rem); line-height: 1;
-    letter-spacing: 0.01em;
-    color: transparent; -webkit-text-stroke: 1.3px #FFFFFF;
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(2.3rem, 5vw, 3.4rem); line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: transparent; -webkit-text-stroke: 1.2px #FFFFFF;
   }
-  @supports not (-webkit-text-stroke: 1.3px #FFFFFF) { .stat .n { color: #FFFFFF; } }
+  @supports not (-webkit-text-stroke: 1.2px #FFFFFF) { .stat .n { color: #FFFFFF; } }
   .stat .k { margin-top: 18px; font-weight: 700; letter-spacing: -0.01em; }
   .stat .d { margin-top: 6px; font-size: 0.86rem; color: rgba(255, 255, 255, 0.8); }
 
@@ -536,10 +554,10 @@
         <span class="eyebrow mono"><i>01</i>About</span>
         <p class="mark">Favor</p>
         <p class="aside">
-          애써서 발견한 좋은 제품을,<br>
+          “애써서 발견한 좋은 제품을,<br>
           좋은 사람들과 함께 사용하고 싶습니다.<br>
           그렇게 고른 제품들에,<br>
-          정성을 더해 건네고 싶습니다.
+          정성을 더해 건네고 싶습니다.”
         </p>
       </div>
 
