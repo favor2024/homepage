@@ -191,7 +191,8 @@
   .bar nav::-webkit-scrollbar { display: none; }
   .bar nav a {
     color: var(--muted); white-space: nowrap;
-    padding: 9px 14px; border-radius: var(--pill);
+    font-size: 0.82rem; letter-spacing: 0.12em;
+    padding: 10px 16px; border-radius: var(--pill);
     transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
   }
   .bar nav a:hover { background-color: var(--tint); color: var(--accent); }
@@ -280,14 +281,14 @@
     color: var(--accent-ink);
     border-radius: var(--pill);
     margin: 0 0 14px;
-    padding: 13px 0;
+    padding: 15px 0;
   }
   .track { display: flex; width: max-content; animation: slide 28s linear infinite; }
   .run { display: flex; flex-shrink: 0; }
   .run span {
     font-family: var(--mono); font-weight: 500;
-    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
-    white-space: nowrap; padding: 0 22px;
+    font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+    white-space: nowrap; padding: 0 24px;
     display: inline-flex; align-items: center;
   }
   .run span::after {
@@ -309,6 +310,7 @@
     .about .mark { color: var(--accent); }
   }
   .about .aside {
+    display: inline-block; max-width: 100%;
     margin-top: 18px; padding: 22px 24px 24px;
     background-color: var(--tint); border-radius: var(--r-sm);
     font-family: var(--warm); font-weight: 400;
