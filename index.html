@@ -1,3 +1,17 @@
+수정 페이지를 Chrome에 열었습니다. GitHub 로그인 화면이 떠 있고 저장된 계정 정보가 채워져 있습니다 — **Sign in**은 직접 눌러주세요. 누르면 바로 `index.html` 편집 화면으로 이어집니다.
+
+편집 화면에서 전체 선택 후 아래 코드로 바꾸고 **Commit changes**를 누르시면 됩니다.
+
+**만든 것**
+
+상단바 공식몰 왼쪽에 `KR | EN` 토글을 넣었습니다. 누르면 페이지 전체 — 메뉴, 슬로건, 회사 소개, 사업 내용, 채널, 로드맵, 흐르는 띠, 문의 폼(라벨·입력 안내문·전송 메시지까지), 회사 개요표, 푸터 — 가 영문으로 바뀝니다. 선택한 언어는 브라우저에 기억되고, 한국어가 아닌 브라우저로 처음 들어온 해외 바이어에게는 영문이 먼저 보입니다. 모바일에서도 토글이 그대로 노출됩니다.
+
+번역에서 판단이 필요했던 곳:
+- **사람의 얼굴을 윤택하게** → *Bringing a glow to every face*
+- **인용구** — 직역하면 줄이 길어져 네 줄 구조가 깨져서, 뜻을 지키며 줄 길이를 맞췄습니다.
+- **등록·신고 번호** — 제2026-서울강서-2149호 같은 번호는 공식 영문 표기가 따로 없어 `No. 2026-Seoul Gangseo-2149` 식으로 음차했습니다. 바이어가 조회할 일은 없지만, 정식 영문 표기를 받으셨다면 알려주세요.
+
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -207,6 +221,27 @@
   }
   .bar nav a.fb svg { width: 18px; height: 18px; fill: currentColor; display: block; }
   .bar nav a.fb:hover { background-color: var(--accent); color: #FFF; border-color: var(--accent); }
+  .bar .lang {
+    display: inline-flex; align-items: center; flex-shrink: 0;
+    background-color: var(--card); border: 1px solid var(--line);
+    border-radius: var(--pill); padding: 3px; gap: 2px;
+  }
+  .bar .lang button {
+    font: inherit; font-family: var(--mono); font-weight: 500;
+    font-size: 0.68rem; letter-spacing: 0.1em;
+    color: var(--muted); background: none; border: 0; cursor: pointer;
+    padding: 8px 12px; border-radius: var(--pill); line-height: 1;
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+  }
+  .bar .lang button:hover { color: var(--accent); }
+  .bar .lang button.on { background-color: var(--accent); color: #FFF; }
+
+  html[lang="en"] body { word-break: normal; }
+  html[lang="en"] h2 em { white-space: normal; }
+  html[lang="en"] .about .aside {
+    font-family: var(--serif-en); font-size: 1.22rem; line-height: 1.75;
+  }
+  html[lang="en"] .hero .slogan { letter-spacing: -0.005em; }
 
   /* ── 히어로 ── */
   .hero { padding: 86px 20px 68px; text-align: center; position: relative; }
@@ -552,8 +587,13 @@
   @media (max-width: 900px) {
     body { font-size: 16.5px; }
     .panel { padding: 46px 20px 50px; border-radius: 18px; }
-    .bar { padding: 10px 10px 10px 18px; width: calc(100% - 28px); }
+    .bar { padding: 10px 10px 10px 16px; width: calc(100% - 28px); }
     .bar nav a:not(.out):not(.fb) { display: none; }
+    .bar .wm { font-size: 1.1rem; letter-spacing: 0.2em; text-indent: 0.2em; }
+    .bar nav { gap: 5px; }
+    .bar nav a.out { padding: 10px 14px; }
+    .bar nav a.fb { width: 40px; height: 40px; }
+    .bar .lang button { padding: 7px 9px; font-size: 0.64rem; letter-spacing: 0.06em; }
     .about { grid-template-columns: 1fr; gap: 28px; }
     .item { grid-template-columns: 1fr; gap: 4px; padding: 19px 20px; }
     .chans { grid-template-columns: 1fr; }
@@ -585,17 +625,21 @@
 </head>
 <body>
 
-<a class="skip" href="#about">본문 바로가기</a>
+<a class="skip" href="#about" data-en="Skip to content">본문 바로가기</a>
 
 <div class="bar" id="bar">
   <a class="wm" href="#top">Favor</a>
   <nav aria-label="주요 메뉴">
-    <a class="mono" href="#about">회사 소개</a>
-    <a class="mono" href="#work">사업 내용</a>
-    <a class="mono" href="#channels">유통 채널</a>
-    <a class="mono" href="#contact">문의</a>
-    <a class="mono" href="#profile">회사 개요</a>
-    <a class="mono out" href="https://favorofficial.com" target="_blank" rel="noopener">공식몰 ↗</a>
+    <a class="mono" href="#about" data-en="About">회사 소개</a>
+    <a class="mono" href="#work" data-en="What we do">사업 내용</a>
+    <a class="mono" href="#channels" data-en="Channels">유통 채널</a>
+    <a class="mono" href="#contact" data-en="Contact">문의</a>
+    <a class="mono" href="#profile" data-en="Company">회사 개요</a>
+    <div class="lang" role="group" aria-label="Language / 언어">
+      <button type="button" class="on" data-lang="ko">KR</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+    <a class="mono out" href="https://favorofficial.com" target="_blank" rel="noopener" data-en="Store ↗">공식몰 ↗</a>
     <a class="fb" href="https://www.facebook.com/favor.kbeauty" target="_blank" rel="noopener" aria-label="FAVOR 페이스북 페이지">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
     </a>
@@ -607,13 +651,13 @@
   <h1 class="wordmark">Favor</h1>
   <p class="kr mono">K-Beauty Distribution<br>Cross-border Commerce</p>
 
-  <p class="slogan">사람의 얼굴을 윤택하게</p>
-  <p class="sub">좋은 화장품을 엄선하여 <br class="m">국내 오픈마켓과 해외 플랫폼에 공급합니다.</p>
+  <p class="slogan" data-en="Bringing a glow to every face">사람의 얼굴을 윤택하게</p>
+  <p class="sub" data-en="We curate quality Korean cosmetics and supply them <br class=&quot;m&quot;>to marketplaces at home and platforms abroad.">좋은 화장품을 엄선하여 <br class="m">국내 오픈마켓과 해외 플랫폼에 공급합니다.</p>
 
 
   <div class="acts">
-    <a class="btn fill" href="#about">회사 소개<span class="arw" aria-hidden="true">→</span></a>
-    <a class="btn ghost" href="https://favorofficial.com" target="_blank" rel="noopener">공식몰<span class="arw" aria-hidden="true">↗</span></a>
+    <a class="btn fill" href="#about"><span data-en="About us">회사 소개</span><span class="arw" aria-hidden="true">→</span></a>
+    <a class="btn ghost" href="https://favorofficial.com" target="_blank" rel="noopener"><span data-en="Official store">공식몰</span><span class="arw" aria-hidden="true">↗</span></a>
   </div>
 
   <span class="plus p1" aria-hidden="true">+</span>
@@ -631,7 +675,7 @@
       <div class="reveal">
         <span class="eyebrow mono"><i>01</i>About</span>
         <p class="mark">Favor</p>
-        <p class="aside">
+        <p class="aside" data-en="“What takes effort to find,<br>you offer first to someone you love.<br>We add our own care to products<br>chosen in that same spirit.”">
           “애써서 찾은 것일수록,<br>
           아끼는 사람에게 먼저 권하게 됩니다.<br>
           이러한 마음이 담긴 제품들에,<br>
@@ -640,11 +684,11 @@
       </div>
 
       <div class="body reveal d1">
-        <p class="lead">
+        <p class="lead" data-en="FAVOR is a cosmetics distribution company founded in July 2024.<br>To us, cosmetics are <b>a small gift in everyday life</b>.">
           FAVOR는 2024년 7월에 시작된 화장품 유통 회사입니다.<br>
           우리에게 화장품은 <br class="m">‘<b>일상 속 작은 선물</b>’입니다.
         </p>
-        <p>
+        <p data-en="Good cosmetics bring a glow to the face, <br class=&quot;m&quot;>and lightness to the heart.<br>We prepare gifts that brighten both.">
           좋은 화장품은 얼굴을 윤택하게 하며, <br class="m">마음까지 밝게 합니다.<br>
           얼굴과 마음을 빛나게 할 선물을 준비합니다.
         </p>
@@ -656,29 +700,29 @@
   <section class="panel" id="work">
     <div class="head reveal">
       <span class="eyebrow mono"><i>02</i>What we do</span>
-      <h2><span class="nowrap">선물이 될 만한</span> 제품을<br><em>고르고 전하는 일</em>을 합니다.</h2>
+      <h2 data-en="Our work is to <em>choose and deliver</em><br>products worth giving as a gift."><span class="nowrap">선물이 될 만한</span> 제품을<br><em>고르고 전하는 일</em>을 합니다.</h2>
     </div>
 
     <div class="work">
       <article class="item reveal">
         <span class="tag mono">Sourcing</span>
-        <h3>제품 선별 &amp; 매입</h3>
-        <p>믿을 만한 성분을 포함한 제품을 선별해 매입하고, 합리적인 가격으로 내놓습니다.</p>
+        <h3 data-en="Sourcing &amp; Purchasing">제품 선별 &amp; 매입</h3>
+        <p data-en="We select and purchase products with trustworthy ingredients, and offer them at a fair price.">믿을 만한 성분을 포함한 제품을 선별해 매입하고, 합리적인 가격으로 내놓습니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Domestic</span>
-        <h3>국내 채널 운영</h3>
-        <p>스마트스토어, 쿠팡, 자사몰을 함께 운영하며 채널별 고객층에 맞춰 상품을 관리합니다.</p>
+        <h3 data-en="Domestic Channels">국내 채널 운영</h3>
+        <p data-en="We run Smart Store, Coupang and our own mall together, managing the assortment for each channel’s customers.">스마트스토어, 쿠팡, 자사몰을 함께 운영하며 채널별 고객층에 맞춰 상품을 관리합니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Cross-border</span>
-        <h3>해외 플랫폼 공급</h3>
-        <p>Shopee, Qoo10 등 다국적 플랫폼에서 판매하며 해외 배송과 현지 문의에 응대합니다.</p>
+        <h3 data-en="Cross-border Supply">해외 플랫폼 공급</h3>
+        <p data-en="We sell on multinational platforms such as Shopee and Qoo10, handling overseas shipping and local inquiries.">Shopee, Qoo10 등 다국적 플랫폼에서 판매하며 해외 배송과 현지 문의에 응대합니다.</p>
       </article>
       <article class="item reveal">
         <span class="tag mono">Operation</span>
-        <h3>재고 관리 &amp; 고객 소통</h3>
-        <p>판매 흐름에 맞춰 매입과 재고를 조정하고, 고객의 필요를 파악하여 소통합니다.</p>
+        <h3 data-en="Inventory &amp; Customer Care">재고 관리 &amp; 고객 소통</h3>
+        <p data-en="We adjust purchasing and stock to the flow of sales, and stay close to what customers need.">판매 흐름에 맞춰 매입과 재고를 조정하고, 고객의 필요를 파악하여 소통합니다.</p>
       </article>
     </div>
   </section>
@@ -687,8 +731,8 @@
   <section class="panel dark" id="channels">
     <div class="head reveal">
       <span class="eyebrow mono"><i>03</i>Channels</span>
-      <h2>찾는 사람이 있는 곳으로,<br><em>국내에서 해외까지</em>.</h2>
-      <p class="note">플랫폼마다 만나게 되는 다양한 사람들을 위해 채널별로 상품 구성과 소개 방식을 따로 준비합니다.</p>
+      <h2 data-en="Wherever the buyers are,<br><em>from Korea to the world</em>.">찾는 사람이 있는 곳으로,<br><em>국내에서 해외까지</em>.</h2>
+      <p class="note" data-en="Every platform brings a different audience, so we prepare the assortment and the way we present it channel by channel.">플랫폼마다 만나게 되는 다양한 사람들을 위해 채널별로 상품 구성과 소개 방식을 따로 준비합니다.</p>
     </div>
 
     <div class="chans">
@@ -700,7 +744,7 @@
           <span class="logo">11st</span>
           <span class="logo">Favor Mall</span>
         </div>
-        <p class="cap">자사몰 운영 및 국내 주요 오픈마켓에 입점해 있습니다.</p>
+        <p class="cap" data-en="We run our own mall and sell on Korea’s major open marketplaces.">자사몰 운영 및 국내 주요 오픈마켓에 입점해 있습니다.</p>
       </div>
       <div class="chan reveal d1">
         <p class="t mono">Global</p>
@@ -708,14 +752,14 @@
           <span class="logo">Shopee</span>
           <span class="logo">Qoo10</span>
         </div>
-        <p class="cap">동남아시아와 일본을 중심으로 한 다국적 플랫폼에서 판매합니다.</p>
+        <p class="cap" data-en="We sell on multinational platforms centred on Southeast Asia and Japan.">동남아시아와 일본을 중심으로 한 다국적 플랫폼에서 판매합니다.</p>
       </div>
     </div>
 
     <div class="stats">
-      <div class="stat reveal"><span class="n" data-to="10">0</span><p class="k">운영 중인 판매 채널</p><p class="d">국내 오픈마켓과 자사몰, 해외 플랫폼</p></div>
-      <div class="stat reveal d1"><span class="n" data-to="3">0</span><p class="k">보유한 등록 · 신고</p><p class="d">화장품책임판매업 · 건강기능식품판매업 · 통신판매업</p></div>
-      <div class="stat reveal d2"><span class="n" data-to="30" data-suffix="+">0</span><p class="k">함께 하는 브랜드</p><p class="d">선별해 매입하고 판매하는 화장품 브랜드</p></div>
+      <div class="stat reveal"><span class="n" data-to="10">0</span><p class="k" data-en="Sales channels in operation">운영 중인 판매 채널</p><p class="d" data-en="Korean marketplaces, our own mall and global platforms">국내 오픈마켓과 자사몰, 해외 플랫폼</p></div>
+      <div class="stat reveal d1"><span class="n" data-to="3">0</span><p class="k" data-en="Licences held">보유한 등록 · 신고</p><p class="d" data-en="Cosmetics Distributor · Health Functional Food Sales · Mail-order Sales">화장품책임판매업 · 건강기능식품판매업 · 통신판매업</p></div>
+      <div class="stat reveal d2"><span class="n" data-to="30" data-suffix="+">0</span><p class="k" data-en="Brands we work with">함께 하는 브랜드</p><p class="d" data-en="Cosmetic brands we select, purchase and sell">선별해 매입하고 판매하는 화장품 브랜드</p></div>
     </div>
   </section>
 
@@ -723,32 +767,32 @@
   <section class="panel" id="roadmap">
     <div class="head reveal">
       <span class="eyebrow mono"><i>04</i>Roadmap</span>
-      <h2>더 많이, 더 멀리<br><em>닿기 위해</em>.</h2>
+      <h2 data-en="Reaching more people,<br><em>reaching further</em>.">더 많이, 더 멀리<br><em>닿기 위해</em>.</h2>
     </div>
 
     <div class="plans">
       <div class="plan reveal">
         <span class="tag mono">Category</span>
-        <h3>건강기능식품 확대</h3>
-        <p>건강기능식품 영업신고를 마쳤습니다.<br>화장품에 이어 건강기능식품까지 취급 품목을 넓힙니다.</p>
-        <span class="state mono done">신고 완료</span>
+        <h3 data-en="Health Functional Foods">건강기능식품 확대</h3>
+        <p data-en="Our health functional food sales filing is complete.<br>We are widening our range from cosmetics into supplements.">건강기능식품 영업신고를 마쳤습니다.<br>화장품에 이어 건강기능식품까지 취급 품목을 넓힙니다.</p>
+        <span class="state mono done" data-en="Filed">신고 완료</span>
       </div>
       <div class="plan reveal">
         <span class="tag mono">Own product</span>
-        <h3>OEM 자체 제품</h3>
-        <p>화장품책임판매업 등록을 마쳤습니다.<br>위탁 제조로 더 좋은 제품을 만들어 건네고자 합니다.</p>
-        <span class="state mono done">등록 완료</span>
+        <h3 data-en="OEM Own Products">OEM 자체 제품</h3>
+        <p data-en="Our cosmetics responsible distributor registration is complete.<br>Through contract manufacturing we aim to make better products of our own.">화장품책임판매업 등록을 마쳤습니다.<br>위탁 제조로 더 좋은 제품을 만들어 건네고자 합니다.</p>
+        <span class="state mono done" data-en="Registered">등록 완료</span>
       </div>
       <div class="plan reveal">
         <span class="tag mono">Next</span>
-        <h3>그 밖에 준비하는 것</h3>
+        <h3 data-en="Also in Preparation">그 밖에 준비하는 것</h3>
         <ul class="nexts">
-          <li>아마존 US 입점</li>
-          <li>라이브커머스와 숏폼 제작</li>
-          <li>친환경 자체 브랜드</li>
-          <li>운영과 마케팅 자동화</li>
+          <li data-en="Listing on Amazon US">아마존 US 입점</li>
+          <li data-en="Live commerce and short-form video">라이브커머스와 숏폼 제작</li>
+          <li data-en="An eco-friendly own brand">친환경 자체 브랜드</li>
+          <li data-en="Operations and marketing automation">운영과 마케팅 자동화</li>
         </ul>
-        <span class="state mono">준비 중</span>
+        <span class="state mono" data-en="In progress">준비 중</span>
       </div>
     </div>
   </section>
@@ -757,8 +801,8 @@
   <!-- 화면 전환의 쉼표 -->
   <div class="strip" aria-hidden="true">
     <div class="track">
-      <div class="run"><span>화장품 유통</span><span>Cross-border Commerce</span><span>제품 선별 &amp; 매입</span><span>국내외 채널 운영</span><span>화장품책임판매업 등록</span><span>건강기능식품판매업 신고</span></div>
-      <div class="run"><span>화장품 유통</span><span>Cross-border Commerce</span><span>제품 선별 &amp; 매입</span><span>국내외 채널 운영</span><span>화장품책임판매업 등록</span><span>건강기능식품판매업 신고</span></div>
+      <div class="run" data-en-run="Cosmetics Distribution|Cross-border Commerce|Sourcing &amp; Purchasing|Domestic &amp; Global Channels|Cosmetics Distributor Registered|Health Food Sales Filed"><span>화장품 유통</span><span>Cross-border Commerce</span><span>제품 선별 &amp; 매입</span><span>국내외 채널 운영</span><span>화장품책임판매업 등록</span><span>건강기능식품판매업 신고</span></div>
+      <div class="run" data-en-run="Cosmetics Distribution|Cross-border Commerce|Sourcing &amp; Purchasing|Domestic &amp; Global Channels|Cosmetics Distributor Registered|Health Food Sales Filed"><span>화장품 유통</span><span>Cross-border Commerce</span><span>제품 선별 &amp; 매입</span><span>국내외 채널 운영</span><span>화장품책임판매업 등록</span><span>건강기능식품판매업 신고</span></div>
     </div>
   </div>
 
@@ -766,8 +810,8 @@
   <section class="panel contact" id="contact">
     <div class="head reveal">
       <span class="eyebrow mono"><i>05</i>Contact</span>
-      <h2>함께 할 수 있는<br><em>많은 길</em>을 열어두었습니다.</h2>
-      <p class="lead">
+      <h2 data-en="We keep <em>many paths</em> open<br>for working together.">함께 할 수 있는<br><em>많은 길</em>을 열어두었습니다.</h2>
+      <p class="lead" data-en="Brand supply proposals, channel partnerships, <br class=&quot;m&quot;>or anything else at all.<br>We reply within three business days.">
         브랜드 공급 제안, 채널 제휴, <br class="m">그 밖의 무엇이든 좋습니다.<br>
         영업일 기준 3일 이내에 답변을 드리겠습니다.
       </p>
@@ -776,31 +820,31 @@
     <form class="form reveal d2" id="form" data-endpoint="" novalidate>
       <!-- 봇 유인용 필드 — 사람에게는 보이지 않습니다 -->
       <div class="hp-field" aria-hidden="true">
-        <label for="f-bot">자동 입력 방지</label>
+        <label for="f-bot" data-en="Leave this field empty">자동 입력 방지</label>
         <input id="f-bot" name="b_url" type="text" tabindex="-1" autocomplete="off">
       </div>
 
       <div class="field">
-        <label for="f-name">성함 / 담당자명</label>
-        <input id="f-name" name="name" type="text" required placeholder="홍길동 팀장">
+        <label for="f-name" data-en="Your name">성함 / 담당자명</label>
+        <input id="f-name" name="name" type="text" required placeholder="홍길동 팀장" data-en-ph="Jane Doe">
       </div>
       <div class="field">
-        <label for="f-company">브랜드명 또는 회사명</label>
+        <label for="f-company" data-en="Brand or company">브랜드명 또는 회사명</label>
         <input id="f-company" name="company" type="text" required placeholder="FAVOR">
       </div>
       <div class="field">
-        <label for="f-email">회신받으실 이메일</label>
+        <label for="f-email" data-en="Email for our reply">회신받으실 이메일</label>
         <input id="f-email" name="email" type="email" required placeholder="contact@brand.com">
       </div>
       <div class="field">
-        <label for="f-msg">문의 내용</label>
-        <textarea id="f-msg" name="message" rows="5" required placeholder="브랜드 소개와 제안 내용을 자유롭게 적어주세요."></textarea>
+        <label for="f-msg" data-en="Message">문의 내용</label>
+        <textarea id="f-msg" name="message" rows="5" required placeholder="브랜드 소개와 제안 내용을 자유롭게 적어주세요." data-en-ph="Tell us about your brand and your proposal."></textarea>
       </div>
-      <button class="send" type="submit">문의 보내기</button>
+      <button class="send" type="submit" data-en="Send inquiry">문의 보내기</button>
       <p class="status" id="status" role="status" aria-live="polite"></p>
     </form>
 
-    <p class="or reveal d3">또는 바로 메일 주셔도 됩니다.</p>
+    <p class="or reveal d3" data-en="Or simply email us directly.">또는 바로 메일 주셔도 됩니다.</p>
     <a class="mail reveal d3" href="mailto:adoor.favor@gmail.com">adoor.favor@gmail.com</a>
     <p class="tel mono reveal d3">T. 070-8058-9608</p>
   </section>
@@ -814,15 +858,15 @@
         <span class="capr"><b>FAVOR</b><i class="chev" aria-hidden="true"></i></span>
       </button>
       <dl id="specBody" hidden>
-        <div class="row"><dt class="mono">상호</dt><dd>파보르 (FAVOR)</dd></div>
-        <div class="row"><dt class="mono">대표</dt><dd>전두리</dd></div>
+        <div class="row"><dt class="mono" data-en="Name">상호</dt><dd data-en="FAVOR">파보르 (FAVOR)</dd></div>
+        <div class="row"><dt class="mono" data-en="CEO">대표</dt><dd data-en="Duri Jeon">전두리</dd></div>
       <div class="row"><dt class="mono">Est.</dt><dd>2024. 07. 02</dd></div>
-        <div class="row"><dt class="mono">업태</dt><dd>도매 및 소매업 · 전문, 과학 및 기술서비스업</dd></div>
-        <div class="row"><dt class="mono">종목</dt><dd>전자상거래(화장품 · 건강 보조식품)<br>인물 사진 및 행사용 영상 촬영업</dd></div>
-        <div class="row"><dt class="mono">등록</dt><dd>화장품책임판매업 제45851호</dd></div>
-        <div class="row"><dt class="mono">신고</dt><dd>건강기능식품판매업 제2025-0482797호<br>통신판매업 제2026-서울강서-2149호</dd></div>
-        <div class="row"><dt class="mono">채널</dt><dd>스마트스토어 · 쿠팡 · 자사몰 · Shopee · Qoo10 외</dd></div>
-        <div class="row"><dt class="mono">소재지</dt><dd>서울특별시 강서구 양천로 94</dd></div>
+        <div class="row"><dt class="mono" data-en="Business">업태</dt><dd data-en="Wholesale &amp; retail · Professional, scientific and technical services">도매 및 소매업 · 전문, 과학 및 기술서비스업</dd></div>
+        <div class="row"><dt class="mono" data-en="Category">종목</dt><dd data-en="E-commerce (cosmetics · health supplements)<br>Portrait photography and event videography">전자상거래(화장품 · 건강 보조식품)<br>인물 사진 및 행사용 영상 촬영업</dd></div>
+        <div class="row"><dt class="mono" data-en="Registration">등록</dt><dd data-en="Cosmetics Responsible Distributor No. 45851">화장품책임판매업 제45851호</dd></div>
+        <div class="row"><dt class="mono" data-en="Filing">신고</dt><dd data-en="Health Functional Food Sales No. 2025-0482797<br>Mail-order Sales No. 2026-Seoul Gangseo-2149">건강기능식품판매업 제2025-0482797호<br>통신판매업 제2026-서울강서-2149호</dd></div>
+        <div class="row"><dt class="mono" data-en="Channels">채널</dt><dd data-en="Smart Store · Coupang · Own mall · Shopee · Qoo10 and others">스마트스토어 · 쿠팡 · 자사몰 · Shopee · Qoo10 외</dd></div>
+        <div class="row"><dt class="mono" data-en="Address">소재지</dt><dd data-en="94 Yangcheon-ro, Gangseo-gu, Seoul, Korea">서울특별시 강서구 양천로 94</dd></div>
       </dl>
     </section>
   </section>
@@ -834,9 +878,9 @@
     <div class="top">
       <span class="wm">Favor</span>
       <div class="links mono">
-        <a href="https://favorofficial.com" target="_blank" rel="noopener">공식몰</a>
-        <a href="mailto:adoor.favor@gmail.com">문의</a>
-        <a href="#top">맨 위로</a>
+        <a href="https://favorofficial.com" target="_blank" rel="noopener" data-en="Store">공식몰</a>
+        <a href="mailto:adoor.favor@gmail.com" data-en="Contact">문의</a>
+        <a href="#top" data-en="Top">맨 위로</a>
       </div>
     </div>
 
@@ -899,6 +943,75 @@
     specBody.hidden = open;
   });
 
+  // 언어 토글 (KR / EN)
+  var LANG = 'ko';
+  var SAY = {
+    ok:   ['문의가 접수되었습니다. 영업일 기준 3일 이내에 답변드리겠습니다.',
+           'Thank you. We will reply within three business days.'],
+    empty:['빈 칸을 모두 채워주세요.', 'Please fill in every field.'],
+    mail: ['이메일 주소를 다시 확인해 주세요.', 'Please check the email address.'],
+    busy: ['보내는 중입니다…', 'Sending…'],
+    fail: ['전송에 실패했습니다. 아래 메일 주소로 보내주세요.',
+           'Sending failed. Please use the email address below.'],
+    open: ['메일 앱이 열립니다. 열리지 않으면 아래 주소로 보내주세요.',
+           'Your mail app should open. If it does not, use the address below.']
+  };
+  var t = function (key) { return SAY[key][LANG === 'en' ? 1 : 0]; };
+
+  var TITLE = ['파보르 FAVOR — 화장품 유통', 'FAVOR — K-Beauty Distribution'];
+
+  var setLang = function (code) {
+    LANG = code === 'en' ? 'en' : 'ko';
+    document.documentElement.lang = LANG;
+    document.title = TITLE[LANG === 'en' ? 1 : 0];
+
+    var els = document.querySelectorAll('[data-en]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.getAttribute('data-ko') === null) el.setAttribute('data-ko', el.innerHTML);
+      el.innerHTML = el.getAttribute(LANG === 'en' ? 'data-en' : 'data-ko');
+    }
+
+    var phs = document.querySelectorAll('[data-en-ph]');
+    for (var p = 0; p < phs.length; p++) {
+      var ph = phs[p];
+      if (ph.getAttribute('data-ko-ph') === null) ph.setAttribute('data-ko-ph', ph.getAttribute('placeholder') || '');
+      ph.setAttribute('placeholder', ph.getAttribute(LANG === 'en' ? 'data-en-ph' : 'data-ko-ph'));
+    }
+
+    var runs = document.querySelectorAll('[data-en-run]');
+    for (var r = 0; r < runs.length; r++) {
+      var run = runs[r];
+      if (run.getAttribute('data-ko-run') === null) {
+        var keep = [], sp = run.children;
+        for (var q = 0; q < sp.length; q++) keep.push(sp[q].innerHTML);
+        run.setAttribute('data-ko-run', keep.join('|'));
+      }
+      var words = run.getAttribute(LANG === 'en' ? 'data-en-run' : 'data-ko-run').split('|');
+      var kids = run.children;
+      for (var w = 0; w < kids.length && w < words.length; w++) kids[w].innerHTML = words[w];
+    }
+
+    var btns = document.querySelectorAll('.lang button');
+    for (var b = 0; b < btns.length; b++) {
+      btns[b].classList.toggle('on', btns[b].getAttribute('data-lang') === LANG);
+    }
+
+    try { localStorage.setItem('favor-lang', LANG); } catch (e) {}
+  };
+
+  var langBtns = document.querySelectorAll('.lang button');
+  for (var L = 0; L < langBtns.length; L++) {
+    langBtns[L].addEventListener('click', function () {
+      setLang(this.getAttribute('data-lang'));
+    });
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('favor-lang'); } catch (e) {}
+  if (!saved && navigator.language && navigator.language.slice(0, 2) !== 'ko') saved = 'en';
+  if (saved === 'en') setLang('en');
+
   // 문의 폼
   var form = document.getElementById('form');
   var statusEl = document.getElementById('status');
@@ -914,7 +1027,7 @@
     // 봇이 숨은 칸을 채웠다면 조용히 멈춥니다
     if ((d.get('b_url') || '').trim() !== '') {
       form.reset();
-      say('문의가 접수되었습니다. 영업일 기준 3일 이내에 답변드리겠습니다.');
+      say(t('ok'));
       return;
     }
 
@@ -923,24 +1036,24 @@
     var email = (d.get('email') || '').trim();
     var msg = (d.get('message') || '').trim();
 
-    if (!name || !company || !email || !msg) { say('빈 칸을 모두 채워주세요.', true); return; }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say('이메일 주소를 다시 확인해 주세요.', true); return; }
+    if (!name || !company || !email || !msg) { say(t('empty'), true); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say(t('mail'), true); return; }
 
     var btn = form.querySelector('.send');
     var endpoint = form.getAttribute('data-endpoint');
 
     if (endpoint) {
-      btn.disabled = true; say('보내는 중입니다…');
+      btn.disabled = true; say(t('busy'));
       d.delete('b_url');
       fetch(endpoint, { method: 'POST', body: d, headers: { Accept: 'application/json' } })
         .then(function (r) {
           btn.disabled = false;
-          if (r.ok) { form.reset(); say('문의가 접수되었습니다. 영업일 기준 3일 이내에 답변드리겠습니다.'); }
-          else { say('전송에 실패했습니다. 아래 메일 주소로 보내주세요.', true); }
+          if (r.ok) { form.reset(); say(t('ok')); }
+          else { say(t('fail'), true); }
         })
         .catch(function () {
           btn.disabled = false;
-          say('전송에 실패했습니다. 아래 메일 주소로 보내주세요.', true);
+          say(t('fail'), true);
         });
       return;
     }
@@ -951,9 +1064,10 @@
     window.location.href = 'mailto:adoor.favor@gmail.com'
       + '?subject=' + encodeURIComponent('[문의] ' + company)
       + '&body=' + encodeURIComponent(body);
-    say('메일 앱이 열립니다. 열리지 않으면 아래 주소로 보내주세요.');
+    say(t('open'));
   });
 </script>
 
 </body>
 </html>
+```
